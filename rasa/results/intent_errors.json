@@ -1,0 +1,34 @@
+[
+  {
+    "text": "não entendi",
+    "intent": "nlu_fallback",
+    "intent_prediction": {
+      "name": "inform_schedule",
+      "confidence": 0.00014925732102710754
+    }
+  },
+  {
+    "text": "isso não faz sentido",
+    "intent": "nlu_fallback",
+    "intent_prediction": {
+      "name": "inform_schedule",
+      "confidence": 0.00012124797649448738
+    }
+  },
+  {
+    "text": "como assim?",
+    "intent": "nlu_fallback",
+    "intent_prediction": {
+      "name": "inform_schedule",
+      "confidence": 0.00022431880643125623
+    }
+  },
+  {
+    "text": "pode repetir?",
+    "intent": "nlu_fallback",
+    "intent_prediction": {
+      "name": "inform_schedule",
+      "confidence": 0.0004521893570199609
+    }
+  }
+]

@@ -1,0 +1,222 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - oi
+    - olá
+    - bom dia
+    - boa tarde
+    - alo
+    - e aí
+    - ola
+
+- intent: goodbye
+  examples: |
+    - tchau
+    - até logo
+    - obrigado
+    - valeu
+
+- intent: affirm
+  examples: |
+    - sim
+    - claro
+    - correto
+    - pode ser
+    - sim, por favor
+    - com certeza
+    - ok
+    - isso
+    - afirmativo
+    - gostaria sim
+    - gostaria
+    - sim, quero agendar
+    - por favor
+    - isso mesmo
+
+- intent: deny
+  examples: |
+    - não
+    - negativo
+    - não quero
+
+- intent: inform_symptoms
+  examples: |
+    - estou com [dor de cabeça](symptom)
+    - sinto [febre](symptom) e [dor no corpo](symptom)
+    - tenho [tosse](symptom)
+    - estou com [enjoo](symptom)
+    - estou com [falta de ar](symptom)
+    - estou com [calafrios](symptom)
+    - estou com [problemas na hora de fazer xixi](symptom)
+    - sinto uma [dor forte no peito](symptom)
+    - tenho tido [muita azia](symptom) depois de comer
+    - minha [pressão está alta](symptom)
+    - estou com [diarreia](symptom)
+    - estou com [dor de garganta](symptom)
+    - estou com [dor nas costas](symptom)
+    - [dor no estomago](symptom)
+
+- intent: deny_symptoms
+  examples: |
+    - é só uma consulta de rotina
+    - não estou com sintomas
+    - quero fazer um check-up
+    - de rotina
+    - nao tenho sintomas
+    - nao estou com nada
+    - quero de rotina
+
+- intent: affirm_symptoms
+  examples: |
+    - sintoma
+    - sintomas
+    - tenho sintomas
+    - sim, estou com sintomas
+    - é um sintoma especifico
+    - é um sintoma
+
+- intent: schedule_appointment
+  examples: |
+    - quero agendar uma consulta
+    - gostaria de marcar um horário
+    - preciso marcar uma consulta
+    - quero marcar uma consulta
+
+- intent: inform_schedule
+  examples: |
+    - 12/08/2025
+    - amanhã
+    - 25 de dezembro
+
+- intent: faq_schedule_process
+  examples: |
+    - como faço para marcar uma consulta?
+    - qual o processo para agendar?
+    - como funciona o agendamento?
+    - me explica como marcar um horário
+    - quais os passos para agendar?
+
+- intent: provide_name
+  examples: |
+    - meu nome é [Maria Rosa dos Santos](patient_name)
+    - [João Silva](patient_name)
+    - [Fernanda Torres](patient_name)
+    - [joao nunes](patient_name)  # Adicione o exemplo exato que está a dar erro
+    - [Ana](patient_name)
+    - [Pedro](patient_name)
+    - [Julia de Oliveira](patient_name)
+    - me chamo [Carlos Eduardo Rodrigues](patient_name)
+    - é [Lucas](patient_name)
+    - [Ana Maria](patient_name)
+    - o nome é [Vinícius](patient_name)
+    - [Mariana da Silva](patient_name)
+    - [Pedro Henrique](patient_name)
+    - meu nome é [Beatriz](patient_name)
+    - [Carlos Eduardo](patient_name)
+    - [Laura](patient_name)
+    - [Rafael Almeida](patient_name)
+    - [Júlia Martins](patient_name)
+    - [Bruno](patient_name)
+    - [Isabela Gonçalves](patient_name)
+    - [Thiago Ribeiro](patient_name)
+
+- intent: provide_patient_email
+  examples: |
+    - meu email é [joao.silva@exemplo.com](patient_email)
+    - [teste@gmail.com](patient_email)
+
+- intent: inform_specialty
+  examples: |
+    - quero uma consulta de [Cardiologia](specialty)
+    - a especialidade é [Pediatria](specialty)
+    - [Ortopedia](specialty)
+    - quero consultar com um [dermatologista](specialty)
+    - pode ser com [Dermatologia](specialty)
+    - estou procurando um [ortopedista](specialty)
+    - preciso de uma consulta com [Ginecologia](specialty)
+    - gostaria de falar com um [neurologista](specialty)
+    - [Neurologia](specialty), por favor
+    - quero marcar com um [endocrinologista](specialty)
+    - [Endocrinologia](specialty) seria ideal
+    - agendar com [oftalmologista](specialty)
+    - consulta com [Oftalmologia](specialty)
+    - marcar com [urologista](specialty)
+    - [Urologia](specialty) está disponível?
+    - [Clínico Geral](specialty)
+    - para [Clínico Geral](specialty)
+    - preciso de [gastroenterologia](specialty)
+    - quero marcar com [pneumologista](specialty)
+    - agendar [obstetrícia](specialty)
+
+- synonym: Clínica Geral
+  examples: |
+    - clinico geral
+- synonym: Cardiologia
+  examples: |
+    - cardiologista
+- synonym: Dermatologia
+  examples: |
+    - dermatologista
+- synonym: Pediatria
+  examples: |
+    - pediatra
+- synonym: Ortopedia
+  examples: |
+    - ortopedista
+- synonym: Ginecologia
+  examples: |
+    - ginecologista
+- synonym: Neurologia
+  examples: |
+    - neurologista
+- synonym: Pneumologia
+  examples: |
+    - pneumologista
+- synonym: Gastroenterologia
+  examples: |
+    - gastro
+- synonym: Endocrinologia
+  examples: |
+    - endocrinologista
+- synonym: Obstetrícia
+  examples: |
+    - obstetra
+- synonym: Urologia
+  examples: |
+    - urologista
+- synonym: Oftalmologia
+  examples: |
+    - oftalmologista
+
+- intent: ask_for_repetition
+  examples: |
+    - não entendi
+    - isso não faz sentido
+    - como assim?
+    - pode repetir?
+
+- intent: normalize_symptom_language
+  examples: |
+    - tô com uma dorzinha chata na cabeça
+    - parece que peguei alguma coisa, tô meio mole
+    - tô com um negócio estranho na barriga
+    - tô meio gripado, sabe?
+    - tô com uma tosse esquisita
+
+- intent: emotional_input
+  examples: |
+    - estou muito preocupado com minha saúde
+    - tenho medo de ir ao médico
+    - estou ansioso com essa consulta
+    - não sei se vou conseguir lidar com isso
+    - estou triste com esse diagnóstico
+
+- intent: ask_consultation_questions
+  examples: |
+    - que perguntas devo fazer na consulta?
+    - o que perguntar para o especialista?
+    - quero saber o que perguntar ao médico
+    - quais dúvidas posso levar para a consulta?
+    - sugestões de perguntas para o médico

@@ -1,0 +1,1470 @@
+[
+  {
+    "text": "bom dia",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 7,
+        "value": "bom dia",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "boa tarde",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 9,
+        "value": "boa tarde",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "boa noite",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 9,
+        "value": "boa noite",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "pode ser",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 8,
+        "value": "pode ser",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "sim, por favor",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 5,
+        "end": 14,
+        "value": "por favor",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "estou com dor de cabeça",
+    "entities": [
+      {
+        "start": 10,
+        "end": 23,
+        "value": "dor de cabeça",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 21,
+        "value": "estou com dor de cabe",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "symptom",
+        "start": 10,
+        "end": 23,
+        "confidence_entity": 0.9221070408821106,
+        "value": "dor de cabeça",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "sinto febre e dor no corpo",
+    "entities": [
+      {
+        "start": 6,
+        "end": 11,
+        "value": "febre",
+        "entity": "symptom"
+      },
+      {
+        "start": 14,
+        "end": 26,
+        "value": "dor no corpo",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 11,
+        "value": "sinto febre",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "patient_name",
+        "start": 14,
+        "end": 26,
+        "value": "dor no corpo",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "symptom",
+        "start": 6,
+        "end": 11,
+        "confidence_entity": 0.9981896281242371,
+        "value": "febre",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "symptom",
+        "start": 14,
+        "end": 26,
+        "confidence_entity": 0.9504135847091675,
+        "value": "dor no corpo",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "tenho tosse",
+    "entities": [
+      {
+        "start": 6,
+        "end": 11,
+        "value": "tosse",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 11,
+        "value": "tenho tosse",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "symptom",
+        "start": 6,
+        "end": 11,
+        "confidence_entity": 0.9988922476768494,
+        "value": "tosse",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "dor de cabeça",
+    "entities": [
+      {
+        "start": 0,
+        "end": 13,
+        "value": "dor de cabeça",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 11,
+        "value": "dor de cabe",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "symptom",
+        "start": 0,
+        "end": 13,
+        "confidence_entity": 0.8878136873245239,
+        "value": "dor de cabeça",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "dor de cabeca",
+    "entities": [
+      {
+        "start": 0,
+        "end": 13,
+        "value": "dor de cabeca",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 13,
+        "value": "dor de cabeca",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "symptom",
+        "start": 0,
+        "end": 13,
+        "confidence_entity": 0.9543371200561523,
+        "value": "dor de cabeca",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "febre",
+    "entities": [
+      {
+        "start": 0,
+        "end": 5,
+        "value": "febre",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "symptom",
+        "start": 0,
+        "end": 5,
+        "confidence_entity": 0.9992201328277588,
+        "value": "febre",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "tosse",
+    "entities": [
+      {
+        "start": 0,
+        "end": 5,
+        "value": "tosse",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "symptom",
+        "start": 0,
+        "end": 5,
+        "confidence_entity": 0.9991366267204285,
+        "value": "tosse",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "dor",
+    "entities": [
+      {
+        "start": 0,
+        "end": 3,
+        "value": "dor",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "symptom",
+        "start": 0,
+        "end": 3,
+        "confidence_entity": 0.9283217787742615,
+        "value": "dor",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "dor no corpo",
+    "entities": [
+      {
+        "start": 0,
+        "end": 12,
+        "value": "dor no corpo",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 12,
+        "value": "dor no corpo",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "symptom",
+        "start": 0,
+        "end": 12,
+        "confidence_entity": 0.9753961563110352,
+        "value": "dor no corpo",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "estou com dores",
+    "entities": [
+      {
+        "start": 10,
+        "end": 15,
+        "value": "dores",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 15,
+        "value": "estou com dores",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "symptom",
+        "start": 10,
+        "end": 15,
+        "confidence_entity": 0.9989596605300903,
+        "value": "dores",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "dor de cabeça e dor nos olhos",
+    "entities": [
+      {
+        "start": 0,
+        "end": 29,
+        "value": "dor de cabeça e dor nos olhos",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 11,
+        "value": "dor de cabe",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "patient_name",
+        "start": 16,
+        "end": 29,
+        "value": "dor nos olhos",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "symptom",
+        "start": 0,
+        "end": 29,
+        "confidence_entity": 0.8573573231697083,
+        "value": "dor de cabeça e dor nos olhos",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "estou com enjoo",
+    "entities": [
+      {
+        "start": 10,
+        "end": 15,
+        "value": "enjoo",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 15,
+        "value": "estou com enjoo",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "estou com falta de ar",
+    "entities": [
+      {
+        "start": 10,
+        "end": 21,
+        "value": "falta de ar",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 21,
+        "value": "estou com falta de ar",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "estou com calafrios",
+    "entities": [
+      {
+        "start": 10,
+        "end": 19,
+        "value": "calafrios",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 19,
+        "value": "estou com calafrios",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "é só uma consulta de rotina",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 5,
+        "end": 27,
+        "value": "uma consulta de rotina",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "não estou com sintomas",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 4,
+        "end": 22,
+        "value": "estou com sintomas",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "quero fazer um check-up",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 20,
+        "value": "quero fazer um check",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "sintomas específicos",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 14,
+        "value": "sintomas espec",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "sintoma especifico",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 18,
+        "value": "sintoma especifico",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "tenho um sintoma",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 16,
+        "value": "tenho um sintoma",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "tenho sintomas",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 14,
+        "value": "tenho sintomas",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "sim, estou com sintomas",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 5,
+        "end": 23,
+        "value": "estou com sintomas",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "tenho um sintoma especifico",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 27,
+        "value": "tenho um sintoma especifico",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "estou com sintoma",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 17,
+        "value": "estou com sintoma",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "quero agendar uma consulta",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 26,
+        "value": "quero agendar uma consulta",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "quero marcar uma consulta",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 25,
+        "value": "quero marcar uma consulta",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "gostaria de marcar um horário",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 25,
+        "value": "gostaria de marcar um hor",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "preciso de uma consulta",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 23,
+        "value": "preciso de uma consulta",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "25 de dezembro",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 3,
+        "end": 14,
+        "value": "de dezembro",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "quarta-feira que vem",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 7,
+        "end": 20,
+        "value": "feira que vem",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "dia 15 de agosto às 14h",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 7,
+        "end": 16,
+        "value": "de agosto",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "dia 30 de setembro",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 7,
+        "end": 18,
+        "value": "de setembro",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "às 8h da manhã",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 6,
+        "end": 13,
+        "value": "da manh",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "meu nome é Maria Rosa dos Santos",
+    "entities": [
+      {
+        "start": 11,
+        "end": 32,
+        "value": "Maria Rosa dos Santos",
+        "entity": "patient_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 8,
+        "value": "meu nome",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "patient_name",
+        "start": 11,
+        "end": 32,
+        "value": "Maria Rosa dos Santos",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "patient_name",
+        "start": 11,
+        "end": 32,
+        "confidence_entity": 0.9942483901977539,
+        "value": "Maria Rosa dos Santos",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "João Silva",
+    "entities": [
+      {
+        "start": 0,
+        "end": 10,
+        "value": "João Silva",
+        "entity": "patient_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 10,
+        "confidence_entity": 0.9986634254455566,
+        "value": "João Silva",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "sou Catharina Napoleão",
+    "entities": [
+      {
+        "start": 4,
+        "end": 22,
+        "value": "Catharina Napoleão",
+        "entity": "patient_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 20,
+        "value": "sou Catharina Napole",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "patient_name",
+        "start": 4,
+        "end": 22,
+        "confidence_entity": 0.999255359172821,
+        "value": "Catharina Napoleão",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "meu nome é Ana Clara",
+    "entities": [
+      {
+        "start": 11,
+        "end": 20,
+        "value": "Ana Clara",
+        "entity": "patient_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 8,
+        "value": "meu nome",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "patient_name",
+        "start": 11,
+        "end": 20,
+        "value": "Ana Clara",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "patient_name",
+        "start": 11,
+        "end": 20,
+        "confidence_entity": 0.9986756443977356,
+        "value": "Ana Clara",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Lúcia",
+    "entities": [
+      {
+        "start": 0,
+        "end": 5,
+        "value": "Lúcia",
+        "entity": "patient_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 5,
+        "confidence_entity": 0.997308611869812,
+        "value": "Lúcia",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Pedro",
+    "entities": [
+      {
+        "start": 0,
+        "end": 5,
+        "value": "Pedro",
+        "entity": "patient_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 5,
+        "confidence_entity": 0.9958328604698181,
+        "value": "Pedro",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "meu nome é Bruna Costa",
+    "entities": [
+      {
+        "start": 11,
+        "end": 22,
+        "value": "Bruna Costa",
+        "entity": "patient_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 8,
+        "value": "meu nome",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "patient_name",
+        "start": 11,
+        "end": 22,
+        "value": "Bruna Costa",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "patient_name",
+        "start": 11,
+        "end": 22,
+        "confidence_entity": 0.6252912282943726,
+        "value": "Bruna Costa",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "sou Felipe Andrade",
+    "entities": [
+      {
+        "start": 4,
+        "end": 18,
+        "value": "Felipe Andrade",
+        "entity": "patient_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 18,
+        "value": "sou Felipe Andrade",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "patient_name",
+        "start": 4,
+        "end": 18,
+        "confidence_entity": 0.827696681022644,
+        "value": "Felipe Andrade",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "meu email é joao.silva@exemplo.com",
+    "entities": [
+      {
+        "start": 12,
+        "end": 34,
+        "value": "joao.silva@exemplo.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 9,
+        "value": "meu email",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "patient_email",
+        "start": 12,
+        "end": 34,
+        "confidence_entity": 0.9982825517654419,
+        "value": "joao.silva@exemplo.com",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "teste@gmail.com",
+    "entities": [
+      {
+        "start": 0,
+        "end": 15,
+        "value": "teste@gmail.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_email",
+        "start": 0,
+        "end": 15,
+        "confidence_entity": 0.9982051849365234,
+        "value": "teste@gmail.com",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "ana.clara@dominio.com",
+    "entities": [
+      {
+        "start": 0,
+        "end": 21,
+        "value": "ana.clara@dominio.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "contato@empresa.com.br",
+    "entities": [
+      {
+        "start": 0,
+        "end": 22,
+        "value": "contato@empresa.com.br",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "meu email é bruna.costa@email.com",
+    "entities": [
+      {
+        "start": 12,
+        "end": 33,
+        "value": "bruna.costa@email.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 9,
+        "value": "meu email",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "felipe.andrade@dominio.com",
+    "entities": [
+      {
+        "start": 0,
+        "end": 26,
+        "value": "felipe.andrade@dominio.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "gabriela.moura@empresa.org",
+    "entities": [
+      {
+        "start": 0,
+        "end": 26,
+        "value": "gabriela.moura@empresa.org",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "lucas.martins@exemplo.net",
+    "entities": [
+      {
+        "start": 0,
+        "end": 25,
+        "value": "lucas.martins@exemplo.net",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "renata.lopes@saude.com.br",
+    "entities": [
+      {
+        "start": 0,
+        "end": 25,
+        "value": "renata.lopes@saude.com.br",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "thiago.ferreira@teste.com",
+    "entities": [
+      {
+        "start": 0,
+        "end": 25,
+        "value": "thiago.ferreira@teste.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "camila.rocha@clinicamed.com",
+    "entities": [
+      {
+        "start": 0,
+        "end": 27,
+        "value": "camila.rocha@clinicamed.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "specialty",
+        "start": 0,
+        "end": 27,
+        "confidence_entity": 0.8258945941925049,
+        "value": "camila.rocha@clinicamed.com",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "daniela.lima@outlook.com",
+    "entities": [
+      {
+        "start": 0,
+        "end": 24,
+        "value": "daniela.lima@outlook.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "vinicius.almeida@hospital.org",
+    "entities": [
+      {
+        "start": 0,
+        "end": 29,
+        "value": "vinicius.almeida@hospital.org",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "eduardo.tavares@medmail.com",
+    "entities": [
+      {
+        "start": 0,
+        "end": 27,
+        "value": "eduardo.tavares@medmail.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_email",
+        "start": 0,
+        "end": 27,
+        "confidence_entity": 0.7237876653671265,
+        "value": "eduardo.tavares@medmail.com",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "quero uma consulta de cardiologia",
+    "entities": [
+      {
+        "start": 22,
+        "end": 33,
+        "value": "cardiologia",
+        "entity": "specialty"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 33,
+        "value": "quero uma consulta de cardiologia",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "specialty",
+        "start": 22,
+        "end": 33,
+        "confidence_entity": 0.9957078695297241,
+        "value": "cardiologia",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "a especialidade é pediatria",
+    "entities": [
+      {
+        "start": 18,
+        "end": 27,
+        "value": "pediatria",
+        "entity": "specialty"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "specialty",
+        "start": 18,
+        "end": 27,
+        "confidence_entity": 0.9967792630195618,
+        "value": "pediatria",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "preciso de um clínico geral",
+    "entities": [
+      {
+        "start": 14,
+        "end": 27,
+        "value": "clínico geral",
+        "entity": "specialty"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 16,
+        "value": "preciso de um cl",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "patient_name",
+        "start": 17,
+        "end": 27,
+        "value": "nico geral",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "specialty",
+        "start": 14,
+        "end": 27,
+        "confidence_entity": 0.9976646900177002,
+        "value": "clínico geral",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "quero uma consulta de clínico geral",
+    "entities": [
+      {
+        "start": 22,
+        "end": 35,
+        "value": "clínico geral",
+        "entity": "specialty"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 24,
+        "value": "quero uma consulta de cl",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "patient_name",
+        "start": 25,
+        "end": 35,
+        "value": "nico geral",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "specialty",
+        "start": 22,
+        "end": 35,
+        "confidence_entity": 0.9975109100341797,
+        "value": "clínico geral",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "clinico geral",
+    "entities": [
+      {
+        "start": 0,
+        "end": 13,
+        "value": "clinico geral",
+        "entity": "specialty"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 13,
+        "value": "clinico geral",
+        "extractor": "RegexEntityExtractor",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "specialty",
+        "start": 0,
+        "end": 13,
+        "confidence_entity": 0.9967928528785706,
+        "value": "clinico geral",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "clínica geral",
+    "entities": [
+      {
+        "start": 0,
+        "end": 13,
+        "value": "clínica geral",
+        "entity": "specialty"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 3,
+        "end": 13,
+        "value": "nica geral",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "specialty",
+        "start": 0,
+        "end": 13,
+        "confidence_entity": 0.9976937174797058,
+        "value": "clínica geral",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "dermatologia",
+    "entities": [
+      {
+        "start": 0,
+        "end": 12,
+        "value": "dermatologia",
+        "entity": "specialty"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "specialty",
+        "start": 0,
+        "end": 12,
+        "confidence_entity": 0.9068040251731873,
+        "value": "dermatologia",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "ortopedia",
+    "entities": [
+      {
+        "start": 0,
+        "end": 9,
+        "value": "ortopedia",
+        "entity": "specialty"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "ginecologia",
+    "entities": [
+      {
+        "start": 0,
+        "end": 11,
+        "value": "ginecologia",
+        "entity": "specialty"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "specialty",
+        "start": 0,
+        "end": 11,
+        "confidence_entity": 0.8272243738174438,
+        "value": "ginecologia",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "isso não faz sentido",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 9,
+        "end": 20,
+        "value": "faz sentido",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  }
+]

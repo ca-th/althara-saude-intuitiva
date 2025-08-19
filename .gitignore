@@ -1,42 +1,40 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# ---------- Python virtual environments ----------
+venv/
+.venv/
+rasa_venv/
+**/venv*/
+**/.venv*/
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# ---------- Dotenv files (chaves/senhas) ----------
+.env
+.env.*
+*.env
+rasa/.env
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# ---------- Rasa build artifacts ----------
+# Modelos treinados (gerais). Comente se quiser versionar modelos.
+rasa/models/
+models/*.tar.gz
+# Logs
+rasa/*.log
+# Diretórios internos de runtime/cache
+**/.rasa/
+**/.rasa_cache/
 
-# IDEs and editors
+# ---------- Python caches / tooling ----------
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ---------- Node / frontend builds ----------
+node_modules/
+build/
+dist/
+
+# ---------- IDE/editor ----------
 .idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
-
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-
-# System files
-.DS_Store
-Thumbs.db
+.vscode/
+*.swp

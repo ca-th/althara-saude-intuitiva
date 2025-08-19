@@ -1,0 +1,60 @@
+version: "3.1"
+
+stories:
+
+- story: Agendamento completo guiado por sintomas
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: inform_symptoms
+  - action: action_analyze_symptoms
+  - action: utter_ask_appointment_confirmation
+  - intent: affirm
+  - action: appointment_form
+  - active_loop: appointment_form
+
+- story: Agendamento de rotina completo
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: schedule_appointment
+  - action: utter_ask_symptoms_or_routine
+  - intent: deny_symptoms
+  - action: utter_ask_specialty
+  - intent: inform_specialty
+  - action: appointment_form
+  - active_loop: appointment_form
+
+- story: Agendamento completo via confirmação vaga de sintoma
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: schedule_appointment
+  - action: utter_ask_symptoms_or_routine
+  - intent: affirm_symptoms
+  - action: utter_ask_symptoms
+  - intent: inform_symptoms
+  - action: action_analyze_symptoms
+  - action: utter_ask_appointment_confirmation
+  - intent: affirm
+  - action: appointment_form
+  - active_loop: appointment_form
+
+- story: Usuário recusa após recomendação
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: inform_symptoms
+  - action: action_analyze_symptoms
+  - action: utter_ask_appointment_confirmation
+  - intent: deny
+  - action: action_handle_denial_with_llm
+
+- story: Usuário está confuso e pede para repetir
+  steps:
+  # O bot pode ter acabado de dizer qualquer coisa, por exemplo:
+  - action: utter_ask_symptoms_or_routine
+  # O usuário diz que não entendeu, agora com a intenção correta
+  - intent: ask_for_repetition
+  # O bot responde com a mensagem de fallback
+  - action: utter_fallback

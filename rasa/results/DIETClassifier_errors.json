@@ -1,0 +1,347 @@
+[
+  {
+    "text": "estou com enjoo",
+    "entities": [
+      {
+        "start": 10,
+        "end": 15,
+        "value": "enjoo",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 15,
+        "value": "estou com enjoo",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "estou com falta de ar",
+    "entities": [
+      {
+        "start": 10,
+        "end": 21,
+        "value": "falta de ar",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 21,
+        "value": "estou com falta de ar",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "estou com calafrios",
+    "entities": [
+      {
+        "start": 10,
+        "end": 19,
+        "value": "calafrios",
+        "entity": "symptom"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 19,
+        "value": "estou com calafrios",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "Fernanda Torres",
+    "entities": [
+      {
+        "start": 0,
+        "end": 15,
+        "value": "Fernanda Torres",
+        "entity": "patient_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 15,
+        "value": "Fernanda Torres",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 8,
+        "confidence_entity": 0.9275506138801575,
+        "value": "Fernanda",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "symptom",
+        "start": 9,
+        "end": 15,
+        "confidence_entity": 0.7218127846717834,
+        "value": "Torres",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Gabriela Moura",
+    "entities": [
+      {
+        "start": 0,
+        "end": 14,
+        "value": "Gabriela Moura",
+        "entity": "patient_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 14,
+        "value": "Gabriela Moura",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "Lucas Martins",
+    "entities": [
+      {
+        "start": 0,
+        "end": 13,
+        "value": "Lucas Martins",
+        "entity": "patient_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 13,
+        "value": "Lucas Martins",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 5,
+        "confidence_entity": 0.6803644299507141,
+        "value": "Lucas",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Thiago Ferreira",
+    "entities": [
+      {
+        "start": 0,
+        "end": 15,
+        "value": "Thiago Ferreira",
+        "entity": "patient_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 15,
+        "value": "Thiago Ferreira",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "Vinícius Almeida",
+    "entities": [
+      {
+        "start": 0,
+        "end": 16,
+        "value": "Vinícius Almeida",
+        "entity": "patient_name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 4,
+        "end": 16,
+        "value": "cius Almeida",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "ana.clara@dominio.com",
+    "entities": [
+      {
+        "start": 0,
+        "end": 21,
+        "value": "ana.clara@dominio.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "contato@empresa.com.br",
+    "entities": [
+      {
+        "start": 0,
+        "end": 22,
+        "value": "contato@empresa.com.br",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "meu email é bruna.costa@email.com",
+    "entities": [
+      {
+        "start": 12,
+        "end": 33,
+        "value": "bruna.costa@email.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_name",
+        "start": 0,
+        "end": 9,
+        "value": "meu email",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "felipe.andrade@dominio.com",
+    "entities": [
+      {
+        "start": 0,
+        "end": 26,
+        "value": "felipe.andrade@dominio.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "gabriela.moura@empresa.org",
+    "entities": [
+      {
+        "start": 0,
+        "end": 26,
+        "value": "gabriela.moura@empresa.org",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "lucas.martins@exemplo.net",
+    "entities": [
+      {
+        "start": 0,
+        "end": 25,
+        "value": "lucas.martins@exemplo.net",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "renata.lopes@saude.com.br",
+    "entities": [
+      {
+        "start": 0,
+        "end": 25,
+        "value": "renata.lopes@saude.com.br",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "thiago.ferreira@teste.com",
+    "entities": [
+      {
+        "start": 0,
+        "end": 25,
+        "value": "thiago.ferreira@teste.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "camila.rocha@clinicamed.com",
+    "entities": [
+      {
+        "start": 0,
+        "end": 27,
+        "value": "camila.rocha@clinicamed.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "specialty",
+        "start": 0,
+        "end": 27,
+        "confidence_entity": 0.8258945941925049,
+        "value": "camila.rocha@clinicamed.com",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "daniela.lima@outlook.com",
+    "entities": [
+      {
+        "start": 0,
+        "end": 24,
+        "value": "daniela.lima@outlook.com",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "vinicius.almeida@hospital.org",
+    "entities": [
+      {
+        "start": 0,
+        "end": 29,
+        "value": "vinicius.almeida@hospital.org",
+        "entity": "patient_email"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "ortopedia",
+    "entities": [
+      {
+        "start": 0,
+        "end": 9,
+        "value": "ortopedia",
+        "entity": "specialty"
+      }
+    ],
+    "predicted_entities": []
+  }
+]

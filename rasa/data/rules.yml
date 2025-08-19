@@ -1,0 +1,60 @@
+version: "3.1"
+
+rules:
+
+- rule: Cumprimentar sempre
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Despedir sempre
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Ativar formulário após confirmação
+  steps:
+  - action: utter_ask_appointment_confirmation
+  - intent: affirm
+  - action: appointment_form
+  - active_loop: appointment_form
+  - slot_was_set:
+    - requested_slot: requested_specialty
+
+- rule: Submeter formulário e finalizar o agendamento
+  condition:
+  - active_loop: appointment_form
+  steps:
+  - action: appointment_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_schedule_appointment
+  - action: action_provide_prep_tips
+  - action: utter_goodbye
+
+- rule: Interromper formulário quando o usuário nega/cancela
+  condition:
+  - active_loop: appointment_form
+  steps:
+  - intent: deny
+  - action: action_handle_form_interruption
+
+- rule: Negação fora do formulário
+  condition:
+  - active_loop: null
+  steps:
+  - intent: deny
+  - action: action_handle_denial_with_llm
+
+- rule: Explain how to schedule an appointment
+  steps:
+  - intent: faq_schedule_process
+  - action: utter_explain_schedule_process
+
+- rule: Pergunta fora do contexto
+  condition:
+  - active_loop: null
+  steps:
+  - intent: nlu_fallback
+  - action: action_answer_question
