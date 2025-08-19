@@ -1,138 +1,96 @@
-# Sistema de Agendamento Médico
+# Sistema de Agendamento Médico com Chatbot Inteligente
 
-## Descrição do Projeto
+## Visão Geral do Projeto
 
-Sistema completo de agendamento médico desenvolvido para facilitar o gerenciamento de consultas, especialidades e atendimentos. A aplicação integra um chatbot inteligente para melhorar a experiência do usuário e automatizar processos de agendamento.
+Este é um sistema completo de agendamento de consultas médicas, projetado para otimizar o fluxo de trabalho de clínicas e profissionais de saúde. O projeto se destaca pela integração de um **chatbot inteligente**, que automatiza a interação inicial com o paciente e facilita o processo de agendamento de forma intuitiva.
+
+A arquitetura do sistema é modular, permitindo o desenvolvimento e a manutenção de cada componente (Backend, Frontend, Chatbot) de forma independente.
+
+## Principais Funcionalidades
+
+* **Gerenciamento de Consultas**: Agendamento, alteração e cancelamento de atendimentos.
+* **Controle de Especialidades e Profissionais**: Cadastro e gestão de médicos e suas respectivas especialidades.
+* **Chatbot Integrado**: Interface conversacional para agendamento de consultas usando processamento de linguagem natural (PLN).
+* **Interface de Usuário (Frontend)**: Telas responsivas para pacientes e administradores, com visualização de agendamentos e interações com o chatbot.
 
 ## Tecnologias Utilizadas
 
-- **Backend**: Python com CRUD de atendimentos, especialidades e médicos
-- **Integração**: FastApi
-- **Chatbot**: Sistema de diálogo inteligente com fluxo personalizado com Rasa
-- **Banco de Dados**: MySQL para modelagem e armazenamento de dados
-- **Frontend**: React e CSS
-- **Componentes**: Interfaces de chat e telas de agendamento responsivas
+Este projeto foi construído utilizando as seguintes tecnologias:
 
-## Arquitetura do Sistema
+* **Backend**: Python, com o framework **FastAPI** para criação da API REST.
+* **Chatbot**: **Rasa** para gerenciamento de diálogos e processamento de linguagem natural.
+* **Banco de Dados**: **MySQL** para armazenamento de dados de usuários, médicos, especialidades e agendamentos.
+* **Frontend**: **Angular** para a construção da interface de usuário, garantindo uma experiência dinâmica e responsiva.
 
-### Backend API (Python)
-Sistema robusto de gerenciamento com endpoints para:
-- Gestão de atendimentos
-- Cadastro de especialidades médicas
-- Controle de médicos e profissionais
+## Estrutura e Arquitetura do Sistema
 
-### Chatbot Inteligente
-- Fluxo de diálogo automatizado
-- Processamento de linguagem natural para agendamentos
-- Interface conversacional intuitiva
+O projeto é dividido em quatro componentes principais, que se comunicam através de requisições HTTP e do banco de dados.
 
-### Banco de Dados
-- DB em MySQL
+### 1. Backend e API (Python com FastAPI)
 
-### Interface Frontend React
-- Design responsivo com CSS
-- Integração com API backend
-- Telas de agendamento intuitivas
-- Sistema de chat em tempo real
+Responsável pela lógica de negócios e pela exposição dos dados.
+* Gerencia o CRUD (Create, Read, Update, Delete) de atendimentos, especialidades e médicos.
+* Valida e processa as requisições vindas tanto do Frontend quanto do chatbot.
 
-## Grupo
+### 2. Chatbot (Rasa)
 
-### Backend - Catharina
-**Responsabilidades:**
-- Desenvolvimento da API backend em Python
-- Implementação do CRUD de atendimentos
-- Gestão de especialidades e médicos
-- Arquitetura e estruturação do sistema
+* **Fluxo de Diálogo**: Configurado para entender a intenção do usuário (ex: "quero agendar uma consulta") e guiar a conversa.
+* **Processamento de Linguagem Natural**: Analisa as mensagens do paciente para extrair informações relevantes (ex: data, horário, especialidade).
+* **Integração**: Conecta-se com a API do Backend para executar ações como verificar a disponibilidade de um médico ou confirmar um agendamento.
 
-### Chatbot IA - Catharina, Darla, Gustavo e Luciana
-**Responsabilidades:**
-- Implementação do chatbot
-- Fluxo de diálogo para agendamento
-- Análise comportamental da IA
+### 3. Frontend (Angular)
 
-### Banco de Dados - Luciana
-**Responsabilidades:**
-- Modelagem do banco de dados
-- Configuração do MySQL
-- Desenvolvimento e criação de Querys
+* **Design Responsivo**: Garante que a aplicação funcione em diferentes dispositivos.
+* **Telas de Agendamento**: Interface intuitiva para que pacientes e administradores possam visualizar, criar e gerenciar agendamentos.
+* **Interface de Chat**: Componente interativo que se comunica com o chatbot Rasa para permitir a conversa em tempo real.
 
-### Frontend - Gustavo, Rebeca e Darla
-**Responsabilidades:**
-- Desenvolvimento da interface em React
-- Implementação de componentes de chat
-- Criação de telas de agendamento
-- Estilização com CSS
+### 4. Banco de Dados (MySQL)
 
-### Documentação - Rebeca
-**Responsabilidades:**
-- Criação da documentação técnica
-- Criação do Readme
+Armazena todas as informações críticas do sistema, incluindo:
+* Tabelas para **usuários, médicos e pacientes**.
+* Registros de **especialidades médicas**.
+* Histórico e detalhes de **atendimentos e agendamentos**.
 
-## Funcionalidades Principais
+## Como Iniciar o Projeto
 
-- Agendamento de consultas via chat
-- Gerenciamento de especialidades médicas
-- Cadastro e controle de profissionais
-- Interface responsiva e moderna
+Para rodar este projeto localmente, siga os seguintes passos para cada componente:
 
-## Instalação e Configuração
+**Pré-requisitos:**
+* Python 3.10
+* Node.js e npm
+* MySQL Server
+* Git
 
-```bash
-# Clone o repositório
-git clone [url-do-repositorio]
+**1. Configurar o Banco de Dados MySQL**
+* Crie um banco de dados com o nome de sua preferência (por exemplo, `althara_saude`).
+* Execute o script de modelagem de dados que está na pasta `SQL/`.
 
-# Backend (Python)
-cd Consultorio
-pip install uvicorn
-criar a maquina: python -m venv venv
-ativar o ven: source venv/Scripts/active(no git bash), venv\Scripts\activate.bat(cmd) 
-instalar os pacotes: pip install -r requirements.txt
-ao ativar o ven, usar o comando de instalação novamente: pip install uvicorn
-executar: uvicorn main:app --reload ou uvicorn Backend.main:app --reload (recomendado)
-Se der erro, saia da pasta Backend e rode algum dos comandos de executar novamente
+**2. Configurar o Backend**
+* Vá para a pasta `Backend/`.
+* Crie e ative um ambiente virtual:
+    `python -m venv venv`
+    `venv\Scripts\activate` (Windows) ou `source venv/bin/activate` (macOS/Linux)
+* Instale as dependências:
+    `pip install -r requirements.txt`
+* Inicie o servidor da API:
+    `uvicorn main:app --reload`
 
-# Frontend (React)
-cd Consultorio
-cd frontend
-cd projeto-react
-npm install (se for necessário)
-npm install react-router-dom
-npm start
+**3. Configurar o Chatbot (Rasa)**
+* Vá para a pasta `rasa/`.
+* Instale o Rasa e as dependências:
+    `pip install rasa`
+* Treine o modelo do chatbot:
+    `rasa train`
+* Inicie o servidor do Rasa:
+    `rasa run -m models --enable-api --cors "*"`
 
-# Banco de Dados
-# Configure as credenciais MySQL
-# Execute os scripts de SQL
+**4. Configurar o Frontend (Angular)**
+* Vá para a pasta `Frontend/`.
+* Instale as dependências do Angular:
+    `npm install`
+* Inicie o servidor de desenvolvimento:
+    `ng serve`
 
-# Instalação do Rasa 
+## Contribuições
 
-cd rasa
-
-# Crie um ambiente virtual
-python -m venv venv_py
-
-# Ative o ambiente virtual
-.\venv\Scripts\activate ou source venv_py/Scripts/activate(recomendado)
-
-#Instalação das Bibilotecas
-pip install -r requirements.txt
-
-# Atualize o pip pra versão mais recente
-python -m pip install --upgrade pip
-
-# Ativa a API
-rasa run --enable-api --cors "*" --debug
-
-#Abra outro terminal e entra na venv
-#Rodar o rasa
-python -m rasa run actions
-
-#Abra outro terminal e entre na venv 
-cd ..
-cd Frontend
-cd projeto-react
-
-##IMPORTANTE: 
-
-##Não feche nenhum dos terminais enquanto estiver conversando com o bot. O primeiro terminal (rasa shell) é a sua interface de chat, e o segundo (rasa run actions) é o servidor que executa as ações personalizadas (como a interação com a LLM e o formulário de agendamento).
-
-##Para fechar, use Ctrl+C em ambos os terminais.
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma *issue* para reportar bugs ou uma *pull request* com novas funcionalidades.
