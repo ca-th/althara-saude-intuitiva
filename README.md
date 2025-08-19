@@ -2,15 +2,13 @@
 
 ## Visão Geral do Projeto
 
-Este é um sistema completo de agendamento de consultas médicas, projetado para otimizar o fluxo de trabalho de clínicas e profissionais de saúde. O projeto se destaca pela integração de um **chatbot inteligente**, que automatiza a interação inicial com o paciente e facilita o processo de agendamento de forma intuitiva.
-
-A arquitetura do sistema é modular, permitindo o desenvolvimento e a manutenção de cada componente (Backend, Frontend, Chatbot) de forma independente.
+Este é um sistema completo de agendamento de consultas médicas, projetado para otimizar o fluxo de trabalho de clínicas e profissionais de saúde. O diferencial do projeto é pela integração de um **chatbot inteligente**, que automatiza a interação inicial com o paciente e facilita o processo de agendamento de forma intuitiva.
 
 ## Principais Funcionalidades
 
 * **Gerenciamento de Consultas**: Agendamento, alteração e cancelamento de atendimentos.
 * **Controle de Especialidades e Profissionais**: Cadastro e gestão de médicos e suas respectivas especialidades.
-* **Chatbot Integrado**: Interface conversacional para agendamento de consultas usando processamento de linguagem natural (PLN).
+* **Chatbot Integrado**: Interface conversacional para agendamento de consultas usando processamento de linguagem natural.
 * **Interface de Usuário (Frontend)**: Telas responsivas para pacientes e administradores, com visualização de agendamentos e interações com o chatbot.
 
 ## Tecnologias Utilizadas
