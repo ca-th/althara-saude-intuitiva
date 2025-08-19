@@ -1,0 +1,37 @@
+<!-- Este é o container principal do chat -->
+<div class="chat-window">
+  <!-- Cabeçalho do Chat -->
+  <div class="chat-header">
+    <h3>Assistente Virtual</h3>
+    <p>Pergunte sobre agendamentos e especialidades</p>
+  </div>
+
+  <!-- Área onde as mensagens aparecem -->
+  <div class="chat-messages">
+    <div *ngFor="let message of messages" class="message-wrapper">
+      <div class="message" [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
+        {{ message.text }}
+      </div>
+    </div>
+    <!-- Indicador de "digitando..." -->
+    <div *ngIf="isLoading" class="message-wrapper">
+      <div class="message bot-message typing-indicator">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulário para enviar nova mensagem -->
+  <form class="chat-input-form" (ngSubmit)="sendMessage()">
+    <input
+      type="text"
+      class="chat-input"
+      placeholder="Digite sua mensagem..."
+      [(ngModel)]="currentUserMessage"
+      name="messageInput"
+      autocomplete="off">
+    <button type="submit" class="send-button" [disabled]="isLoading">
+      Enviar
+    </button>
+  </form>
+</div>

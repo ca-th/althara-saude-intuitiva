@@ -1,0 +1,53 @@
+/* Copie e cole este código no seu arquivo: hero.component.css */
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Ocupa a altura inteira da tela */
+  width: 100%;
+  text-align: center;
+
+  /* * CORREÇÃO: Removemos o padding vertical excessivo que causava o espaço
+   * em branco e mantivemos um pequeno padding horizontal para o texto
+   * não colar nas bordas da tela.
+  */
+  padding: 0 20px;
+
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #81d4fa 0%, #0d47a1 100%);
+  color: white;
+}
+
+.hero-container h1 {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.hero-container p {
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.hero-container .start-button {
+  background-color: #ffffff;
+  color: #0d47a1;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.hero-container .start-button:hover {
+  transform: translateY(-3px); /* Efeito de flutuar */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}

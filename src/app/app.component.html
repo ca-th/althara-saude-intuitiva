@@ -1,0 +1,33 @@
+<!-- Navbar com emissão de evento para rolar até seções -->
+<app-navbar (scrollToRequest)="handleScroll($event)"></app-navbar>
+
+<!-- Seção de destaque -->
+<section id="hero">
+  <app-hero (vamosComecar)="mostrarConteudoPrincipal()"></app-hero>
+</section>
+
+<!-- Conteúdo principal visível após interação -->
+<main>
+  <div class="conteudo-bloco" *ngIf="conteudoVisivel" id="conteudo-principal">
+
+    <!-- Seção "Sobre Nós" com ID para scroll -->
+    <section id="sobre-nos">
+      <app-about></app-about>
+    </section>
+
+    <!-- Seção de chamada para ação -->
+    <app-cta (agendarConsulta)="abrirChat()"></app-cta>
+
+    <!-- Seção de contato com ID e visibilidade condicional -->
+    <section id="contato">
+      <app-contato *ngIf="mostrarContato"></app-contato>
+    </section>
+
+  </div>
+</main>
+
+<!-- Chat virtual substitui conteúdo principal -->
+<app-chat *ngIf="chatAberto" (fechar)="fecharChat()"></app-chat>
+
+<!-- Área de rotas (ex: Área do Paciente) -->
+<router-outlet></router-outlet>

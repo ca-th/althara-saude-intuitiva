@@ -1,0 +1,46 @@
+.menu-container {
+  background-color: #ffffff;
+  height: 70px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Espaça a logo e os links */
+  padding: 0 5%; /* Espaçamento nas laterais */
+  box-sizing: border-box;
+}
+
+.logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0d47a1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menu-nav ul {
+  list-style: none; /* Remove as bolinhas */
+  padding: 0;
+  margin: 0;
+  display: flex; /* A mágica acontece aqui: alinha os itens lado a lado */
+  gap: 30px; /* Espaço entre os itens do menu */
+}
+
+.menu-nav ul li a {
+  color: #0d47a1;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 10px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.3s ease;
+}
+
+.menu-nav ul li a:hover {
+  border-bottom: 2px solid #0d47a1; /* Efeito ao passar o mouse */
+}

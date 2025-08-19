@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+html {
+  scroll-behavior: smooth; /* Efeito de rolagem suave! */
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff; /* Fundo ainda mais claro */
+  color: #212529; /* Texto quase preto para alto contraste */
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: hidden; /* ADICIONADO: Impede a barra de rolagem vertical de aparecer */
+}
+
+/* Base de fonte maior para acessibilidade */
+:root {
+  font-size: 16px; /* No mobile, isso pode ser ajustado */
+}
+
+@media (min-width: 768px) {
+  :root {
+    font-size: 18px; /* Fonte um pouco maior em telas maiores */
+  }
+}

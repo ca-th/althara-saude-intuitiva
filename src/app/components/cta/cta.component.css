@@ -1,0 +1,60 @@
+/* --- WRAPPER DA SEÇÃO CTA --- */
+.cta-wrapper {
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8ff;
+}
+
+.cta-container {
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* --- TÍTULO --- */
+.cta-container h2 {
+  font-size: 2.2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* --- PARÁGRAFO --- */
+.cta-container p {
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+/* --- BOTÃO MODERNO --- */
+.chat-button {
+  background-color: #287cd5; /* Azul vibrante */
+  color: white;
+  border: none;
+  border-radius: 50px; /* Botão arredondado */
+  padding: 15px 35px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+/* --- HOVER DO BOTÃO --- */
+.chat-button:hover {
+  background-color: #0056b3; /* Azul mais escuro */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+/* --- CLIQUE NO BOTÃO --- */
+.chat-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(216, 221, 227, 0.3);
+}
