@@ -1,20 +1,20 @@
 /* Copie e cole este código no seu arquivo: hero.component.css */
 
+/* hero.component.css */
+
 .hero-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Ocupa a altura inteira da tela */
+
+  /* --- CORREÇÃO APLICADA AQUI --- */
+  min-height: 100vh; /* Ocupa 70% da altura da tela, não mais 100% */
+  /* Usamos min-height para garantir que o conteúdo caiba bem */
+
   width: 100%;
   text-align: center;
-
-  /* * CORREÇÃO: Removemos o padding vertical excessivo que causava o espaço
-   * em branco e mantivemos um pequeno padding horizontal para o texto
-   * não colar nas bordas da tela.
-  */
-  padding: 0 20px;
-
+  padding: 40px 20px; /* Adicionamos um pouco de padding vertical */
   box-sizing: border-box;
   background: linear-gradient(135deg, #81d4fa 0%, #0d47a1 100%);
   color: white;

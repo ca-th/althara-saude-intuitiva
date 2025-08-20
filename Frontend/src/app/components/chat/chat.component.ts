@@ -1,9 +1,9 @@
 // Arquivo: src/app/components/chat/chat.component.ts
 
-import { Component } from '@angular/core';
+// 1. ADICIONE ViewChild, ElementRef, e AfterViewChecked NAS IMPORTAÇÕES
+import { Component, EventEmitter, Output, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-// CORREÇÃO 1: Ajustado o caminho para voltar duas pastas (de components/chat para app/)
 import { ChatService, ChatApiResponse } from '../../services/chat.service';
 
 interface Message {
@@ -18,12 +18,23 @@ interface Message {
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent {
+// 2. FAÇA O COMPONENTE "IMPLEMENTAR" AfterViewChecked
+export class ChatComponent implements AfterViewChecked {
+  // 3. ADICIONE O @ViewChild PARA CRIAR UMA REFERÊNCIA AO ELEMENTO DO HTML
+  @ViewChild('chatMessagesContainer') private chatContainer!: ElementRef;
+
+  @Output() closeChat = new EventEmitter<void>();
+
   messages: Message[] = [];
   currentUserMessage = '';
   isLoading = false;
 
   constructor(private chatService: ChatService) {}
+
+  // 4. ADICIONE ESTE MÉTODO: ele roda sempre que o Angular atualiza a tela
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
 
   sendMessage(): void {
     if (!this.currentUserMessage.trim()) {
@@ -36,17 +47,28 @@ export class ChatComponent {
     this.isLoading = true;
 
     this.chatService.sendMessage(userMessageToSend).subscribe({
-      // CORREÇÃO 2: Adicionado o tipo para a resposta da API
       next: (apiResponse: ChatApiResponse) => {
         this.messages.push({ text: apiResponse.response, sender: 'bot' });
         this.isLoading = false;
       },
-      // CORREÇÃO 3: Adicionado o tipo 'any' para o erro (pode ser mais específico se quiser)
       error: (err: any) => {
         this.messages.push({ text: 'Erro ao conectar com o assistente. Tente novamente.', sender: 'bot' });
         this.isLoading = false;
         console.error(err);
       }
     });
+  }
+
+  close(): void {
+    this.closeChat.emit();
+  }
+
+  // 5. SUA FUNÇÃO scrollToBottom, AGORA SEPARADA E NO LUGAR CORRETO
+  private scrollToBottom(): void {
+    try {
+      this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+    } catch (err) {
+      // Apenas para evitar erros caso o container não exista ainda
+    }
   }
 }

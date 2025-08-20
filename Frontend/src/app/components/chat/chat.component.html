@@ -1,37 +1,38 @@
-<!-- Este é o container principal do chat -->
-<div class="chat-window">
-  <!-- Cabeçalho do Chat -->
-  <div class="chat-header">
-    <h3>Assistente Virtual</h3>
-    <p>Pergunte sobre agendamentos e especialidades</p>
-  </div>
+<div class="chat-overlay" (click)="close()">
+  <div class="chat-window" (click)="$event.stopPropagation()">
 
-  <!-- Área onde as mensagens aparecem -->
-  <div class="chat-messages">
-    <div *ngFor="let message of messages" class="message-wrapper">
-      <div class="message" [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
-        {{ message.text }}
+    <div class="chat-header">
+      <div class="header-content">
+        <h3>Assistente Virtual</h3>
+        <p>Estamos aqui para ajudar com agendamentos e dúvidas</p>
+      </div>
+      <button class="close-button" (click)="close()">×</button>
+    </div>
+
+    <div class="chat-messages" #chatMessagesContainer>
+      <div *ngFor="let message of messages" class="message-wrapper">
+        <div class="message" [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
+          {{ message.text }}
+        </div>
+      </div>
+      <div *ngIf="isLoading" class="message-wrapper">
+        <div class="message bot-message typing-indicator">
+          <span></span><span></span><span></span>
+        </div>
       </div>
     </div>
-    <!-- Indicador de "digitando..." -->
-    <div *ngIf="isLoading" class="message-wrapper">
-      <div class="message bot-message typing-indicator">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-  </div>
 
-  <!-- Formulário para enviar nova mensagem -->
-  <form class="chat-input-form" (ngSubmit)="sendMessage()">
-    <input
-      type="text"
-      class="chat-input"
-      placeholder="Digite sua mensagem..."
-      [(ngModel)]="currentUserMessage"
-      name="messageInput"
-      autocomplete="off">
-    <button type="submit" class="send-button" [disabled]="isLoading">
-      Enviar
-    </button>
-  </form>
+    <form class="chat-input-form" (ngSubmit)="sendMessage()">
+      <input
+        type="text"
+        class="chat-input"
+        placeholder="Digite sua mensagem..."
+        [(ngModel)]="currentUserMessage"
+        name="messageInput"
+        autocomplete="off">
+      <button type="submit" class="send-button" [disabled]="isLoading">
+        Enviar
+      </button>
+    </form>
+  </div>
 </div>

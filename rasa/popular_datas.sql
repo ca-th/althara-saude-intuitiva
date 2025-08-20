@@ -9,11 +9,6 @@ TRUNCATE TABLE datas;
 
 -- Insere todas as datas de dias úteis para o próximo ano
 INSERT INTO datas (data) VALUES
-('2025-08-13'),
-('2025-08-14'),
-('2025-08-15'),
-('2025-08-18'),
-('2025-08-19'),
 ('2025-08-20'),
 ('2025-08-21'),
 ('2025-08-22'),
@@ -269,7 +264,12 @@ INSERT INTO datas (data) VALUES
 ('2026-08-07'),
 ('2026-08-10'),
 ('2026-08-11'),
-('2026-08-12');
+('2026-08-12'),
+('2026-08-13'),
+('2026-08-14'),
+('2026-08-17'),
+('2026-08-18'),
+('2026-08-19');
 
 -- Reabilita a verificação de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS=1;

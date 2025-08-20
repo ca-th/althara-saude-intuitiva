@@ -1,0 +1,68 @@
+.especialidades-wrapper {
+  padding: 4rem 1rem;
+  background-color: #ffffff; /* Fundo branco para contrastar */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.grid {
+  display: grid;
+  /* Cria 3 colunas em telas grandes, 2 em médias e 1 em pequenas */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; /* Espaçamento entre os cards */
+}
+
+.card {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* <--- Apenas movido para cá */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+  font-size: 1.4rem;
+  color: #0d47a1;
+  margin: 0;
+}
+
+.medicos-lista {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+.medicos-lista ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.medicos-lista li {
+  padding: 8px 0;
+  color: #555;
+  font-size: 1rem;
+}

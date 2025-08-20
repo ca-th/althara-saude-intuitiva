@@ -1,14 +1,10 @@
-<main>
-  <section id="hero">
-    <app-hero (vamosComecar)="mostrarConteudoPrincipal()"></app-hero>
-  </section>
+<app-hero (vamosComecar)="mostrarConteudoPrincipal()"></app-hero>
 
-  <div class="conteudo-bloco" *ngIf="conteudoVisivel" [@fadeIn] id="conteudo-principal">
-    <app-about></app-about>
-    <app-cta (agendarConsulta)="abrirChat()"></app-cta>
-  </div>
+<main *ngIf="conteudoVisivel" [@fadeIn] id="conteudo-principal">
+  <app-cta (agendarConsulta)="abrirChat()"></app-cta>
+
+  <app-especialidades></app-especialidades>
 </main>
-
 <div *ngIf="chatAberto">
   <app-chat (closeChat)="fecharChat()"></app-chat>
 </div>

@@ -1,0 +1,26 @@
+<section class="especialidades-wrapper">
+  <div class="container">
+    <h2>Nossas Especialidades</h2>
+    <p>Oferecemos um cuidado completo e integrado para a sua saúde.</p>
+
+    <div class="grid">
+      <div class="card" *ngFor="let esp of especialidades" (click)="onEspecialidadeClick(esp)">
+        <h3>{{ esp.nome }}</h3>
+
+        <div *ngIf="especialidadeSelecionadaId === esp.id_especialidade" class="medicos-lista">
+          <p *ngIf="isLoadingMedicos">Carregando médicos...</p>
+
+          <ul *ngIf="!isLoadingMedicos && medicosDaEspecialidade.length > 0">
+            <li *ngFor="let medico of medicosDaEspecialidade">
+              {{ medico.nome }}
+            </li>
+          </ul>
+
+          <p *ngIf="!isLoadingMedicos && medicosDaEspecialidade.length === 0">
+            Nenhum médico encontrado para esta especialidade.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

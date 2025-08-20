@@ -7,15 +7,16 @@ import { HeroComponent } from '../components/hero/hero.component';
 import { AboutComponent } from '../components/about/about.component';
 import { CtaComponent } from '../components/cta/cta.component';
 import { ChatComponent } from '../components/chat/chat.component';
+import { EspecialidadesComponent } from '../components/especialidades/especialidades.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     CommonModule,    // <-- Adicionado
-    HeroComponent,   // <-- Adicionado
-    AboutComponent,  // <-- Adicionado
-    CtaComponent,    // <-- Adicionado
+    HeroComponent,   // <-- Adicionado  // <-- Adicionado
+    CtaComponent,
+    EspecialidadesComponent,    // <-- Adicionado
     ChatComponent    // <-- Adicionado
   ],
   templateUrl: './home.component.html',

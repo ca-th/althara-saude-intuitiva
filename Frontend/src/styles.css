@@ -17,7 +17,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-y: hidden; /* ADICIONADO: Impede a barra de rolagem vertical de aparecer */
+ /* overflow-y: hidden; /* ADICIONADO: Impede a barra de rolagem vertical de aparecer */
 }
 
 /* Base de fonte maior para acessibilidade */
