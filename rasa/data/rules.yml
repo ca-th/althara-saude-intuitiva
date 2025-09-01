@@ -12,6 +12,13 @@ rules:
   - intent: goodbye
   - action: utter_goodbye
 
+
+- rule: Recomendar especialidade após análise de sintomas
+  steps:
+  - action: action_analyze_symptoms
+  - action: utter_ask_appointment_confirmation
+# -------------------------------------------------------------
+
 - rule: Ativar formulário após confirmação
   steps:
   - action: utter_ask_appointment_confirmation
@@ -30,8 +37,8 @@ rules:
   - slot_was_set:
     - requested_slot: null
   - action: action_schedule_appointment
-  - action: action_provide_prep_tips
   - action: utter_goodbye
+  - action: action_restart
 
 - rule: Interromper formulário quando o usuário nega/cancela
   condition:
@@ -39,6 +46,7 @@ rules:
   steps:
   - intent: deny
   - action: action_handle_form_interruption
+  - action: action_restart
 
 - rule: Negação fora do formulário
   condition:

@@ -1,0 +1,76 @@
+# Conteúdo final e corrigido para o arquivo: docker-compose.yml
+
+services:
+  # Serviço do Frontend (Angular)
+  frontend:
+    build:
+      context: ./Frontend
+    ports:
+      - "4200:80"
+
+  # Serviço do Backend (FastAPI)
+  backend:
+    build:
+      context: ./Backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./Backend:/app
+    environment:
+      - DATABASE_URL=mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
+    depends_on:
+      - db
+
+  # Serviço do Servidor Principal do Rasa
+  rasa:
+    build:
+      context: ./rasa
+    ports:
+      - "5005:5005"
+    volumes:
+      - ./rasa:/app
+    # --- COMANDO CORRIGIDO AQUI ---
+    command: "run --enable-api --cors '*'"
+    depends_on:
+      - rasa-actions
+
+  # Serviço do Action Server do Rasa
+  rasa-actions:
+    build:
+      context: ./rasa
+    ports:
+      - "5055:5055"
+    volumes:
+      - ./rasa:/app
+    # --- ADICIONE ESTA SEÇÃO ---
+    environment:
+      - DB_HOST=db
+      - DB_USER=${MYSQL_USER}
+      - DB_PASSWORD=${MYSQL_PASSWORD}
+      - DB_NAME=${MYSQL_DATABASE}
+    # --------------------------
+    command: "run actions"
+    depends_on:
+      - db
+
+  # Serviço do Duckling
+  duckling:
+    image: rasa/duckling:latest
+    ports:
+      - "8019:8019"
+
+  # Serviço do Banco de Dados (MySQL)
+  db:
+    image: mysql:8.0
+    restart: always
+    ports:
+      - "3307:3306" # Usando a porta 3307 na sua máquina para evitar conflitos
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database-init:/docker-entrypoint-initdb.d
+
+volumes:
+  db_data:

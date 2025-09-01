@@ -10,9 +10,9 @@ class Medico(BaseModel):
     nome: str
     id_especialidade: int
 
-    # --- CORREÇÃO AQUI ---
+    
     class Config:
-        # Troque 'from_attributes = True' por 'orm_mode = True'
+       
         orm_mode = True
 
 class Horario(BaseModel):
@@ -38,10 +38,17 @@ class Especialidade(BaseModel):
     id_especialidade: int
     nome: str
 
-    # ESTA PARTE É A SOLUÇÃO
     class Config:
-        # Se você usa Pydantic v2 (mais novo), esta linha é a correta
-        #from_attributes = True
         
-        # Se a linha de cima der erro, apague-a e use esta (para Pydantic v1):
         orm_mode = True
+
+class UserCreate(BaseModel):
+    nome: str
+    email: str
+    password: str
+
+#retorna os dados
+class User(BaseModel):
+    id_usuario: int
+    nome: str
+    email: str

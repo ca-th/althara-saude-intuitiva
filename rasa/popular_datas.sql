@@ -1,19 +1,14 @@
 
 -- Script gerado automaticamente para popular a tabela de datas.
 
--- Desabilita a verificação de chaves estrangeiras para permitir o TRUNCATE
+-- Desabilita a verificaÃ§Ã£o de chaves estrangeiras para permitir o TRUNCATE
 SET FOREIGN_KEY_CHECKS=0;
 
 -- Limpa a tabela de datas antigas
 TRUNCATE TABLE datas;
 
--- Insere todas as datas de dias úteis para o próximo ano
+-- Insere todas as datas de dias Ãºteis para o prÃ³ximo ano
 INSERT INTO datas (data) VALUES
-('2025-08-25'),
-('2025-08-26'),
-('2025-08-27'),
-('2025-08-28'),
-('2025-08-29'),
 ('2025-09-01'),
 ('2025-09-02'),
 ('2025-09-03'),
@@ -268,8 +263,14 @@ INSERT INTO datas (data) VALUES
 ('2026-08-18'),
 ('2026-08-19'),
 ('2026-08-20'),
-('2026-08-21');
+('2026-08-21'),
+('2026-08-24'),
+('2026-08-25'),
+('2026-08-26'),
+('2026-08-27'),
+('2026-08-28'),
+('2026-08-31');
 
--- Reabilita a verificação de chaves estrangeiras
+-- Reabilita a verificaÃ§Ã£o de chaves estrangeiras
 SET FOREIGN_KEY_CHECKS=1;
 

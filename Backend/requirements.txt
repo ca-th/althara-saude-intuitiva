@@ -2,3 +2,9 @@ fastapi
 uvicorn
 requests
 pydantic
+sqlalchemy
+pymysql
+cryptography
+passlib
+bcrypt
+requests

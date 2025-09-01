@@ -1,182 +1,160 @@
-version: "3.1"
-
+version: '3.1'
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - inform_symptoms
-  - deny_symptoms
-  - affirm_symptoms
-  - schedule_appointment
-  - inform_schedule
-  - provide_name
-  - provide_patient_email
-  - inform_specialty
-  - nlu_fallback
-  - normalize_symptom_language
-  - emotional_input
-  - ask_consultation_questions
-  - ask_for_repetition
-
+- affirm
+- affirm_symptoms
+- ask_consultation_questions
+- ask_for_repetition
+- deny
+- deny_symptoms
+- emotional_input
+- goodbye
+- greet
+- inform_schedule
+- inform_specialty
+- inform_symptoms
+- nlu_fallback
+- normalize_symptom_language
+- provide_name
+- provide_patient_email
+- schedule_appointment
 entities:
-  - symptom
-  - specialty
-  - patient_name
-  - patient_email
-  - time
-
+- patient_email
+- specialty
+- patient_name
+- symptom
+- time
 slots:
   symptoms:
     type: text
     mappings:
-      - type: from_entity
-        entity: symptom
+    - type: from_entity
+      entity: symptom
   recommended_specialty:
     type: text
     mappings:
-      - type: custom
+    - type: custom
   recommended_doctor_name:
     type: text
     mappings:
-      - type: custom
+    - type: custom
   symptoms_urgency:
     type: text
     mappings:
-      - type: custom
+    - type: custom
   symptoms_explanation:
     type: text
     mappings:
-      - type: custom
+    - type: custom
   requested_specialty:
     type: text
     mappings:
-      - type: from_entity
-        entity: specialty
+    - type: from_entity
+      entity: specialty
   patient_name:
     type: text
     mappings:
-      - type: from_entity
-        entity: patient_name
-      - type: from_text
-        intent: provide_name
+    - type: from_intent
+      intent: provide_name
+      value: True  # <-- Isso diz ao Rasa para não usar o nome da intenção, mas sim o texto do usuário.
+    - type: from_entity
+      entity: patient_name # <-- Se uma entidade for encontrada, ela tem prioridade.
+    - type: from_text
+      conditions:
+        - active_loop: appointment_form
+          requested_slot: patient_name
   patient_email:
     type: text
     mappings:
-      - type: from_entity
-        entity: patient_email
+    - type: from_entity
+      entity: patient_email
   appointment_date:
     type: text
     mappings:
-      - type: from_text
-        conditions:
-          - active_loop: appointment_form
-            requested_slot: appointment_date
+    - type: from_text
+      conditions:
+      - active_loop: appointment_form
+        requested_slot: appointment_date
   appointment_time:
     type: text
     mappings:
-      - type: from_text
-        conditions:
-          - active_loop: appointment_form
-            requested_slot: appointment_time
+    - type: from_text
+      conditions:
+      - active_loop: appointment_form
+        requested_slot: appointment_time
   requested_slot:
     type: text
     mappings:
-      - type: custom
-
+    - type: custom
 responses:
   utter_greet:
-    - text: "Olá! Sou a Aura, sua assistente virtual da Clínica Althara Saúde. Como posso te ajudar hoje?"
-
+  - text: Olá! Sou a Aura, sua assistente virtual da Clínica Althara Saúde. Como posso te ajudar hoje?
   utter_goodbye:
-    - text: "Até mais! Cuide-se."
-    - text: "Qualquer outra coisa que precisar, é só chamar. Até logo!"
-
+  - text: Até mais! Cuide-se.
+  - text: Qualquer outra coisa que precisar, é só chamar. Até logo!
   utter_fallback:
-    - text: "Desculpe, não entendi. Pode reformular, por favor?"
-
-  # NOVA RESPOSTA: Para listar as especialidades antes da análise
-  utter_list_specialties_for_analysis:
-    - text: "Entendi. Com base nos seus sintomas, vou analisar qual dos nossos especialistas é o mais indicado. Nossas especialidades são: **{specialties_list}**."
-
-  # NOVA RESPOSTA: Para o bot "pensar"
+  - text: Desculpe, não entendi. Pode reformular, por favor?
   utter_analyzing_symptoms:
-    - text: "Aguarde um instante enquanto analiso, por favor..."
-    - text: "Só um momento, estou avaliando a melhor opção para você..."
-
+  - text: Aguarde um instante enquanto analiso, por favor...
+  - text: Só um momento, estou avaliando a melhor opção para você...
   utter_explain_schedule_process:
-    - text: "É muito simples! Você pode me dizer se tem algum sintoma ou se é uma consulta de rotina. Em seguida, vamos escolher a especialidade, o melhor dia e horário para você. Quer começar agora?"
-
+  - text: É muito simples! Você pode me dizer se tem algum sintoma ou se é uma consulta de rotina. Em seguida, vamos escolher a especialidade, o melhor dia e horário para você. Quer começar agora?
   utter_ask_appointment_confirmation:
-    - text: "Com base nos seus sintomas, a especialidade recomendada é **{recommended_specialty}**. Encontrei disponibilidade com **{recommended_doctor_name}**. Deseja agendar a consulta?"
-
+  - text: Com base nos seus sintomas, a especialidade recomendada é **{recommended_specialty}**. Encontrei disponibilidade com **{recommended_doctor_name}**. Deseja agendar a consulta?
   utter_ask_symptoms_or_routine:
-    - text: "Certo. O motivo da consulta é algum sintoma específico ou seria um check-up de rotina?"
-
+  - text: Certo. O motivo da consulta é algum sintoma específico ou seria um check-up de rotina?
   utter_ask_symptoms:
-    - text: "Você poderia descrever os sintomas que está sentindo, por gentileza?"
-
+  - text: Você poderia descrever os sintomas que está sentindo, por gentileza?
   utter_ask_specialty:
-    - text: "Qual especialidade você deseja consultar?"
-
+  - text: Qual especialidade você deseja consultar?
   utter_ask_patient_name:
-    - text: "Para prosseguirmos com o agendamento, qual é o nome completo do paciente?"
-
+  - text: Para prosseguirmos com o agendamento, qual é o nome completo do paciente?
   utter_ask_patient_email:
-    - text: "E qual o e-mail para contato?"
-
+  - text: E qual o e-mail para contato?
   utter_ask_appointment_date:
-    - text: "Para qual data você gostaria de agendar? (ex: dd/mm/yy). Atendemos de segunda a sexta."
-
+  - text: 'Para qual data você gostaria de agendar? (ex: dd/mm/yy). Atendemos de segunda a sexta.'
   utter_ask_appointment_time:
-    - text: "Gostaria para qual horário? Nosso atendimento é das 08:00 às 19:00."
-
+  - text: Gostaria para qual horário? Nosso atendimento é das 08:00 às 19:00.
   utter_checking_availability:
-    - text: "Ok, só um momento enquanto verifico a disponibilidade para as {time}..."
-
+  - text: Ok, só um momento enquanto verifico a disponibilidade para as {time}...
   utter_affirm:
-    - text: "Perfeito!"
-    - text: "Ótimo!"
-
+  - text: Perfeito!
+  - text: Ótimo!
   utter_deny:
-    - text: "Tudo bem, sem problemas."
-
+  - text: Tudo bem, sem problemas.
   utter_back_to_flow:
-    - text: "Espero ter ajudado! Podemos continuar?"
-
+  - text: Espero ter ajudado! Podemos continuar?
   utter_ask_requested_specialty:
-    - text: "Para qual especialidade seria a consulta?"
-
-
+  - text: Para qual especialidade seria a consulta?
 forms:
   appointment_form:
     required_slots:
-      - requested_specialty
-      - patient_name
-      - patient_email
-      - appointment_date
-      - appointment_time
-
+    - requested_specialty
+    - patient_name
+    - patient_email
+    - appointment_date
+    - appointment_time
 actions:
-  - action_analyze_symptoms
-  - action_schedule_appointment
-  - action_provide_prep_tips
-  - action_handle_denial_with_llm
-  - action_explain_specialty
-  - action_suggest_questions
-  - action_handle_emotion
-  - action_normalize_symptom
-  - action_handle_form_interruption
-  - action_answer_question
-  - action_suggest_consultation_questions
-  - action_store_patient_name
-  - action_store_patient_email
-  - action_store_specialty
-  - action_confirm_appointment
-  - action_recommend_specialty
-  - action_handle_emotional_input
-  - action_normalize_symptom_language
-
+- utter_greet
+- utter_ask_specialty
+- utter_ask_symptoms_or_routine
+- action_analyze_symptoms
+- action_schedule_appointment
+- action_provide_prep_tips
+- action_handle_denial_with_llm
+- action_explain_specialty
+- action_suggest_questions
+- action_handle_emotion
+- action_normalize_symptom
+- action_handle_form_interruption
+- action_answer_question
+- action_suggest_consultation_questions
+- action_store_patient_name
+- action_store_patient_email
+- action_store_specialty
+- action_confirm_appointment
+- action_recommend_specialty
+- action_handle_emotional_input
+- action_normalize_symptom_language
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

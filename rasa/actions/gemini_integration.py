@@ -13,8 +13,6 @@ class GeminiIntegration:
                 raise ValueError("A variável de ambiente GEMINI_API_KEY não foi definida.")
             genai.configure(api_key=api_key)
             
-            # ▼▼▼ AQUI ESTÁ A CORREÇÃO FINAL ▼▼▼
-            # Usando o modelo mais recente e eficiente.
             self.model = genai.GenerativeModel('gemini-1.5-flash-latest')
             
         except Exception as e:

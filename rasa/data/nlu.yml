@@ -1,5 +1,4 @@
 version: "3.1"
-
 nlu:
 - intent: greet
   examples: |
@@ -10,14 +9,12 @@ nlu:
     - alo
     - e aí
     - ola
-
 - intent: goodbye
   examples: |
     - tchau
     - até logo
     - obrigado
     - valeu
-
 - intent: affirm
   examples: |
     - sim
@@ -34,13 +31,11 @@ nlu:
     - sim, quero agendar
     - por favor
     - isso mesmo
-
 - intent: deny
   examples: |
     - não
     - negativo
     - não quero
-
 - intent: inform_symptoms
   examples: |
     - estou com [dor de cabeça](symptom)
@@ -57,7 +52,6 @@ nlu:
     - estou com [dor de garganta](symptom)
     - estou com [dor nas costas](symptom)
     - [dor no estomago](symptom)
-
 - intent: deny_symptoms
   examples: |
     - é só uma consulta de rotina
@@ -67,7 +61,7 @@ nlu:
     - nao tenho sintomas
     - nao estou com nada
     - quero de rotina
-
+    - rotina
 - intent: affirm_symptoms
   examples: |
     - sintoma
@@ -76,20 +70,18 @@ nlu:
     - sim, estou com sintomas
     - é um sintoma especifico
     - é um sintoma
-
 - intent: schedule_appointment
   examples: |
     - quero agendar uma consulta
     - gostaria de marcar um horário
     - preciso marcar uma consulta
     - quero marcar uma consulta
-
 - intent: inform_schedule
   examples: |
     - 12/08/2025
     - amanhã
     - 25 de dezembro
-
+    - 09/11/2025
 - intent: faq_schedule_process
   examples: |
     - como faço para marcar uma consulta?
@@ -97,7 +89,6 @@ nlu:
     - como funciona o agendamento?
     - me explica como marcar um horário
     - quais os passos para agendar?
-
 - intent: provide_name
   examples: |
     - meu nome é [Maria Rosa dos Santos](patient_name)
@@ -121,12 +112,12 @@ nlu:
     - [Bruno](patient_name)
     - [Isabela Gonçalves](patient_name)
     - [Thiago Ribeiro](patient_name)
-
+    - luiz miguel [santos](patient_name)
 - intent: provide_patient_email
   examples: |
     - meu email é [joao.silva@exemplo.com](patient_email)
     - [teste@gmail.com](patient_email)
-
+    - [luiz@gmail.com](patient_email)
 - intent: inform_specialty
   examples: |
     - quero uma consulta de [Cardiologia](specialty)
@@ -149,7 +140,34 @@ nlu:
     - preciso de [gastroenterologia](specialty)
     - quero marcar com [pneumologista](specialty)
     - agendar [obstetrícia](specialty)
-
+    - [cardiologista]{"entity": "specialty", "value": "Cardiologia"}
+- intent: ask_for_repetition
+  examples: |
+    - não entendi
+    - isso não faz sentido
+    - como assim?
+    - pode repetir?
+- intent: normalize_symptom_language
+  examples: |
+    - tô com uma dorzinha chata na cabeça
+    - parece que peguei alguma coisa, tô meio mole
+    - tô com um negócio estranho na barriga
+    - tô meio gripado, sabe?
+    - tô com uma tosse esquisita
+- intent: emotional_input
+  examples: |
+    - estou muito preocupado com minha saúde
+    - tenho medo de ir ao médico
+    - estou ansioso com essa consulta
+    - não sei se vou conseguir lidar com isso
+    - estou triste com esse diagnóstico
+- intent: ask_consultation_questions
+  examples: |
+    - que perguntas devo fazer na consulta?
+    - o que perguntar para o especialista?
+    - quero saber o que perguntar ao médico
+    - quais dúvidas posso levar para a consulta?
+    - sugestões de perguntas para o médico
 - synonym: Clínica Geral
   examples: |
     - clinico geral
@@ -189,34 +207,3 @@ nlu:
 - synonym: Oftalmologia
   examples: |
     - oftalmologista
-
-- intent: ask_for_repetition
-  examples: |
-    - não entendi
-    - isso não faz sentido
-    - como assim?
-    - pode repetir?
-
-- intent: normalize_symptom_language
-  examples: |
-    - tô com uma dorzinha chata na cabeça
-    - parece que peguei alguma coisa, tô meio mole
-    - tô com um negócio estranho na barriga
-    - tô meio gripado, sabe?
-    - tô com uma tosse esquisita
-
-- intent: emotional_input
-  examples: |
-    - estou muito preocupado com minha saúde
-    - tenho medo de ir ao médico
-    - estou ansioso com essa consulta
-    - não sei se vou conseguir lidar com isso
-    - estou triste com esse diagnóstico
-
-- intent: ask_consultation_questions
-  examples: |
-    - que perguntas devo fazer na consulta?
-    - o que perguntar para o especialista?
-    - quero saber o que perguntar ao médico
-    - quais dúvidas posso levar para a consulta?
-    - sugestões de perguntas para o médico

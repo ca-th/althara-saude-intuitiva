@@ -1,40 +1,47 @@
-# ---------- Python virtual environments ----------
+# ---------- Dependências (Gerenciadas por instaladores) ----------
+# Python
 venv/
 .venv/
 rasa_venv/
 **/venv*/
 **/.venv*/
 
-# ---------- Dotenv files (chaves/senhas) ----------
+# Node.js
+node_modules/
+
+
 .env
+**/.env
 .env.*
 *.env
-rasa/.env
 
-# ---------- Rasa build artifacts ----------
-# Modelos treinados (gerais). Comente se quiser versionar modelos.
-rasa/models/
-models/*.tar.gz
-# Logs
-rasa/*.log
-# Diretórios internos de runtime/cache
-**/.rasa/
-**/.rasa_cache/
-
-# ---------- Python caches / tooling ----------
+# ---------- Arquivos Gerados (Builds e Caches) ----------
+# Python / Rasa
 __pycache__/
 **/__pycache__/
 *.py[cod]
 *.pyo
 .pytest_cache/
-.ipynb_checkpoints/
+.rasa/
+.rasa_cache/
+rasa/models/*.tar.gz
+results/
 
-# ---------- Node / frontend builds ----------
-node_modules/
+# Angular
 build/
 dist/
 
-# ---------- IDE/editor ----------
+# ---------- Logs ----------
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
 .idea/
 .vscode/
-*.swp
+
+# ---------- Arquivos de Sistema Operacional ----------
+.DS_Store
+Thumbs.db

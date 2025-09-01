@@ -14,9 +14,9 @@
 
 /* A janela do chat em si (combinação dos dois estilos) */
 .chat-window {
-  width: 90%;
+  width: 98%;
   max-width: 500px;
-  height: 80%;
+  height: 90%;
   max-height: 700px;
   background-color: white;
   border-radius: 15px;

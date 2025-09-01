@@ -1,3 +1,5 @@
+# Conteúdo completo e corrigido para o arquivo: Backend/actions/actions.py
+
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -50,8 +52,8 @@ class ActionAnalyzeSymptoms(Action):
             if not available_specialties:
                 raise ValueError("Nenhuma especialidade encontrada no banco de dados.")
 
-            dispatcher.utter_message(response="utter_list_specialties_for_analysis", specialties_list=specialties_list_str)
-            dispatcher.utter_message(response="utter_analyzing_symptoms")
+            #dispatcher.utter_message(response="utter_list_specialties_for_analysis", specialties_list=specialties_list_str)
+            #dispatcher.utter_message(response="utter_analyzing_symptoms")
 
             analysis = gemini_service.analyze_symptoms([symptom_text], available_specialties)
 
@@ -130,7 +132,8 @@ class ActionScheduleAppointment(Action):
             id_medico = medico['id_medico']
             nome_medico = medico['nome']
 
-            data_db_format = datetime.strptime(data_str, "%d/%m/%Y").strftime("%Y-%m-%d")
+            date_obj = dateparser.parse(data_str, languages=['pt'])
+            data_db_format = date_obj.strftime("%Y-%m-%d")
             cursor.execute("SELECT id_data FROM datas WHERE data = %s", (data_db_format,))
             data = cursor.fetchone()
             if not data:
@@ -158,15 +161,10 @@ class ActionScheduleAppointment(Action):
             summary = gemini_service.generate_appointment_summary(patient_data_summary)
             tips = gemini_service.generate_preparation_tips(especialidade_nome)
 
-            confirmation_message = f"✅ Agendamento Salvo com Sucesso no sistema!\n\n{summary}\n\n"
-            confirmation_message += "Ótimo! Antes de finalizarmos, aqui estão algumas dicas para sua consulta:\n"
+            confirmation_message = f"Agendamento Salvo com Sucesso no sistema!\n\n{summary}\n\n"
             confirmation_message += tips
-
             dispatcher.utter_message(text=confirmation_message)
             
-            # ▼▼▼ LINHA REMOVIDA DAQUI ▼▼▼
-            # dispatcher.utter_message(response="utter_goodbye")
-
         except Exception as e:
             logger.error(f"Erro ao agendar no banco de dados: {e}")
             dispatcher.utter_message(text="Ocorreu um erro ao tentar salvar seu agendamento.")
@@ -175,6 +173,7 @@ class ActionScheduleAppointment(Action):
                 conn.close()
                 logger.info("Conexão com o MySQL foi fechada.")
         return [SlotSet(s, None) for s in tracker.slots if s not in ["session_started_metadata"]]
+
 
 class ActionShowAvailableTimes(Action):
     def name(self) -> Text:
@@ -232,32 +231,69 @@ class ValidateAppointmentForm(FormValidationAction):
         dispatcher.utter_message(text="Por favor, informe seu nome completo.")
         return {"patient_name": None}
 
-    def validate_patient_email(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
+    def validate_patient_email(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
         if re.match(r"[^@]+@[^@]+\.[^@]+", slot_value):
             return {"patient_email": slot_value}
         dispatcher.utter_message(text="Por favor, informe um e-mail válido (ex: nome@exemplo.com).")
         return {"patient_email": None}
 
-    def validate_appointment_date(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
+    def validate_appointment_date(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
         try:
             settings = {'PREFER_DATES_FROM': 'future', 'DATE_ORDER': 'DMY'}
             date_obj = dateparser.parse(slot_value, languages=['pt'], settings=settings)
+
             if not date_obj:
-                dispatcher.utter_message(text="Não consegui entender essa data. Por favor, tente novamente.")
+                dispatcher.utter_message(text="Não consegui entender essa data. Poderia tentar em outro formato, como 'amanhã' ou '25/09/2025'?")
                 return {"appointment_date": None}
+
             if date_obj.date() < datetime.now().date():
                 dispatcher.utter_message(text="Esta data já passou. Por favor, escolha uma data a partir de hoje.")
                 return {"appointment_date": None}
-            if date_obj.weekday() >= 5:
-                dispatcher.utter_message(text="Desculpe, não funcionamos nos finais de semana (sábado e domingo).")
+
+            if date_obj.weekday() >= 5: # 5 é Sábado, 6 é Domingo
+                dispatcher.utter_message(text="Desculpe, não funcionamos nos finais de semana. Por favor, escolha um dia de segunda a sexta.")
                 return {"appointment_date": None}
-            return {"appointment_date": date_obj.strftime("%d/%m/%Y")}
+            
+            date_str_for_db = date_obj.strftime("%Y-%m-%d")
+            date_str_for_user = date_obj.strftime("%d/%m/%Y")
+            
+            conn = create_connection()
+            if not conn:
+                dispatcher.utter_message(text="Não consigo verificar as datas no momento. Tente novamente em alguns instantes.")
+                return {"appointment_date": None}
+
+            try:
+                cursor = conn.cursor(dictionary=True)
+                cursor.execute("SELECT id_data FROM datas WHERE data = %s", (date_str_for_db,))
+                data_exists = cursor.fetchone()
+
+                if data_exists:
+                    return {"appointment_date": date_str_for_user}
+                else:
+                    dispatcher.utter_message(text=f"A data {date_str_for_user} não está disponível em nossa agenda. Por favor, escolha outra data.")
+                    return {"appointment_date": None}
+            finally:
+                if conn.is_connected():
+                    conn.close()
+
         except Exception as e:
             logger.error(f"Erro na validação da data: {e}")
             dispatcher.utter_message(text="Tive um problema ao processar a data. Tente de outra forma.")
             return {"appointment_date": None}
 
-    def validate_appointment_time(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
+    def validate_appointment_time(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
         try:
             time_obj = dateparser.parse(slot_value, languages=['pt'])
             if not time_obj:
@@ -313,8 +349,8 @@ class ValidateAppointmentForm(FormValidationAction):
                         dispatcher.utter_message(text=msg)
                     else:
                         dispatcher.utter_message(text=f"Puxa, não temos mais horários para {specialty} no dia {date_str}. Você gostaria de tentar outra data?")
+                    
                     return {"appointment_time": None}
-
             finally:
                 if conn.is_connected():
                     conn.close()
@@ -357,6 +393,4 @@ class ActionProvidePrepTips(Action):
     def name(self) -> Text:
         return "action_provide_prep_tips"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        # A lógica de dicas agora está unificada na ActionScheduleAppointment
-        # Mantemos a ação para não quebrar regras/histórias existentes
         return []

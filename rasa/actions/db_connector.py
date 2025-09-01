@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 def create_connection():
     """Cria e retorna uma conexão com o banco de dados MySQL."""
     try:
-        # --- O código agora lê as credenciais do seu arquivo .env ---
+       
         conn = mysql.connector.connect(
             host=os.environ.get("DB_HOST", "localhost"),
             user=os.environ.get("DB_USER", "root"),

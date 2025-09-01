@@ -7,8 +7,9 @@ stories:
   - intent: greet
   - action: utter_greet
   - intent: inform_symptoms
-  - action: action_analyze_symptoms
-  - action: utter_ask_appointment_confirmation
+  - action: utter_analyzing_symptoms # Bot diz que está analisando
+  - action: action_analyze_symptoms # Ação executa silenciosamente
+  - action: utter_ask_appointment_confirmation # Bot dá a recomendação
   - intent: affirm
   - action: appointment_form
   - active_loop: appointment_form
@@ -34,8 +35,9 @@ stories:
   - intent: affirm_symptoms
   - action: utter_ask_symptoms
   - intent: inform_symptoms
-  - action: action_analyze_symptoms
-  - action: utter_ask_appointment_confirmation
+  - action: utter_analyzing_symptoms # Bot diz que está analisando
+  - action: action_analyze_symptoms # Ação executa silenciosamente
+  - action: utter_ask_appointment_confirmation # Bot dá a recomendação
   - intent: affirm
   - action: appointment_form
   - active_loop: appointment_form
@@ -52,9 +54,6 @@ stories:
 
 - story: Usuário está confuso e pede para repetir
   steps:
-  # O bot pode ter acabado de dizer qualquer coisa, por exemplo:
   - action: utter_ask_symptoms_or_routine
-  # O usuário diz que não entendeu, agora com a intenção correta
   - intent: ask_for_repetition
-  # O bot responde com a mensagem de fallback
   - action: utter_fallback
