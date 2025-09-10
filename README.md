@@ -1,94 +1,68 @@
 # Sistema de Agendamento Médico com Chatbot Inteligente
+Oi, pessoal! 👋
 
-## Visão Geral do Projeto
+Queria compartilhar um projeto muito especial para mim. Tudo começou como um trabalho para a faculdade, mas eu gostei tanto do desafio que decidi aprofundar-me e transformá-lo num sistema completo por conta própria. O resultado é este assistente virtual inteligente que ajuda pacientes a agendarem consultas médicas.
 
-Este é um sistema completo de agendamento de consultas médicas, projetado para otimizar o fluxo de trabalho de clínicas e profissionais de saúde. O diferencial do projeto é pela integração de um **chatbot inteligente**, que automatiza a interação inicial com o paciente e facilita o processo de agendamento de forma intuitiva.
+A maior aventura foi, sem dúvida, construir tudo com uma **arquitetura de microsserviços**, onde cada parte do sistema (o site, o "cérebro" da IA, a base de dados) funciona de forma independente dentro de contentores **Docker**. Foi uma jornada de muita aprendizagem!
 
-## Principais Funcionalidades
+## O que o projeto faz de legal?
 
-* **Gerenciamento de Consultas**: Agendamento, alteração e cancelamento de atendimentos.
-* **Controle de Especialidades e Profissionais**: Cadastro e gestão de médicos e suas respectivas especialidades.
-* **Chatbot Integrado**: Interface conversacional para agendamento de consultas usando processamento de linguagem natural.
-* **Interface de Usuário (Frontend)**: Telas responsivas para pacientes e administradores, com visualização de agendamentos e interações com o chatbot.
+* **Um Ambiente Completo no Docker:** A parte que mais gostei foi fazer tudo funcionar junto com o Docker. O frontend, o backend, a IA, a base de dados... tudo sobe com um único comando!
+* **Análise de Sintomas com IA Generativa:** Integrei a **API do Google Gemini** para uma funcionalidade que achei incrível: o paciente pode descrever os seus sintomas e o bot recomenda a especialidade médica mais adequada.
+* **Conversa Fluida para Agendar:** Usei o **Rasa** para construir o fluxo da conversa. O objetivo era que o agendamento fosse o mais natural possível, como conversar com uma pessoa.
+* **Tudo Conectado:** O agendamento feito no chat é guardado em tempo real num banco de dados **MySQL**, o que significa que o sistema funciona de ponta a ponta.
+* **Interface Moderna:** O site (frontend) foi feito em **Angular** para ser rápido e fácil de usar.
 
-## Tecnologias Utilizadas
+## As Tecnologias que Usei
 
-Este projeto foi construído utilizando as seguintes tecnologias:
+* **🐳 Orquestração:** Docker & Docker Compose
+* **🤖 IA Conversacional:** Rasa
+* **✨ IA Generativa:** Google Gemini API
+* **⚙️ Backend:** Python com FastAPI
+* **🖥️ Frontend:** Angular
+* **🗃️ Banco de Dados:** MySQL
 
-* **Backend**: Python, com o framework **FastAPI** para criação da API REST.
-* **Chatbot**: **Rasa** para gerenciamento de diálogos e processamento de linguagem natural.
-* **Banco de Dados**: **MySQL** para armazenamento de dados de usuários, médicos, especialidades e agendamentos.
-* **Frontend**: **Angular** para a construção da interface de usuário, garantindo uma experiência dinâmica e responsiva.
+## Como Tudo "Conversa"? A Arquitetura
 
-## Estrutura e Arquitetura do Sistema
+O sistema é um ecossistema com 6 serviços a comunicarem entre si:
 
-O projeto é dividido em quatro componentes principais, que se comunicam através de requisições HTTP e do banco de dados.
+1.  **`frontend`**: O site em Angular que o usuário vê.
+2.  **`backend`**: É uma API em FastAPI que recebe os pedidos do site e os distribui para os outros serviços.
+3.  **`rasa`**: O "cérebro" principal do chatbot, que entende o que o usuário quer dizer.
+4.  **`rasa-actions`**:  É aqui que o código Python se conecta com a API do Gemini e com o banco de dados para fazer as coisas a sério.
+5.  **`db`**: O banco de dados MySQL, que guarda tudo de forma segura.
+6.  **`duckling`**: Um ajudante do Rasa que é ótimo a perceber datas e horas no meio da conversa.
 
-### 1. Backend e API (Python com FastAPI)
+## Quer Testar na Sua Máquina?
 
-Responsável pela lógica de negócios e pela exposição dos dados.
-* Gerencia o CRUD (Create, Read, Update, Delete) de atendimentos, especialidades e médicos.
-* Valida e processa as requisições vindas tanto do Frontend quanto do chatbot.
+Com o Docker, é super simples!
 
-### 2. Chatbot (Rasa)
+**O que você vai precisar:**
 
-* **Fluxo de Diálogo**: Configurado para entender a intenção do usuário (ex: "quero agendar uma consulta") e guiar a conversa.
-* **Processamento de Linguagem Natural**: Analisa as mensagens do paciente para extrair informações relevantes (ex: data, horário, especialidade).
-* **Integração**: Conecta-se com a API do Backend para executar ações como verificar a disponibilidade de um médico ou confirmar um agendamento.
+* Docker e Docker Compose instalados.
+* Git.
 
-### 3. Frontend (Angular)
+**Passos:**
 
-* **Design Responsivo**: Garante que a aplicação funcione em diferentes dispositivos.
-* **Telas de Agendamento**: Interface intuitiva para que pacientes e administradores possam visualizar, criar e gerenciar agendamentos.
-* **Interface de Chat**: Componente interativo que se comunica com o chatbot Rasa para permitir a conversa em tempo real.
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/ca-th/althara-saude-intuitiva.git](https://github.com/ca-th/althara-saude-intuitiva.git)
+    cd nome-do-repositorio
+    ```
 
-### 4. Banco de Dados (MySQL)
+2.  **Configure as suas chaves:**
+    * Abra o ficheiro `.env` que está na raiz do projeto.
+    * Coloque as suas senhas para o banco de dados e a sua chave da API do Google Gemini nos campos correspondentes.
 
-Armazena todas as informações críticas do sistema, incluindo:
-* Tabelas para **usuários, médicos e pacientes**.
-* Registros de **especialidades médicas**.
-* Histórico e detalhes de **atendimentos e agendamentos**.
+3.  **Suba tudo!**
+    * Este é o único comando que você precisa. Ele vai construir e iniciar todos os 6 serviços de uma vez.
+    ```bash
+    docker-compose up --build
+    ```
 
-## Como Iniciar o Projeto
+4.  **Aceda à Aplicação:**
+    * Aguarde alguns minutos para que todos os serviços, especialmente o Rasa, carreguem os modelos de IA.
+    * Abra o seu navegador e aceda a `http://localhost:4200`.
 
-Para rodar este projeto localmente, siga os seguintes passos para cada componente:
+E pronto! O sistema completo estará a funcionar. Espero que gostem!
 
-**Pré-requisitos:**
-* Python 3.10
-* Node.js e npm
-* MySQL Server
-* Git
-
-**1. Configurar o Banco de Dados MySQL**
-* Crie um banco de dados com o nome de sua preferência (por exemplo, `althara_saude`).
-* Execute o script de modelagem de dados que está na pasta `SQL/`.
-
-**2. Configurar o Backend**
-* Vá para a pasta `Backend/`.
-* Crie e ative um ambiente virtual:
-    `python -m venv venv`
-    `venv\Scripts\activate` (Windows) ou `source venv/bin/activate` (macOS/Linux)
-* Instale as dependências:
-    `pip install -r requirements.txt`
-* Inicie o servidor da API:
-    `uvicorn main:app --reload`
-
-**3. Configurar o Chatbot (Rasa)**
-* Vá para a pasta `rasa/`.
-* Instale o Rasa e as dependências:
-    `pip install rasa`
-* Treine o modelo do chatbot:
-    `rasa train`
-* Inicie o servidor do Rasa:
-    `rasa run -m models --enable-api --cors "*"`
-
-**4. Configurar o Frontend (Angular)**
-* Vá para a pasta `Frontend/`.
-* Instale as dependências do Angular:
-    `npm install`
-* Inicie o servidor de desenvolvimento:
-    `ng serve`
-
-## Contribuições
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir uma *issue* para reportar bugs ou uma *pull request* com novas funcionalidades.
