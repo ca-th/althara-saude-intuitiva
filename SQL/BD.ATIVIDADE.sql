@@ -1,4 +1,3 @@
--- Use o banco de dados correto
 USE consultorio;
  INSERT INTO medicos (nome, id_especialidade) VALUES ('Dr. Fernando Mendes', 9);  -- Gastroenterologia
 INSERT INTO medicos (nome, id_especialidade) VALUES ('Dra. Luisa Neves', 7);  -- Neurologia
@@ -10,18 +9,16 @@ SELECT * FROM consultas WHERE hora = '15:00:00';
 SELECT * FROM agendamentos;
 
 
--- Apaga as tabelas na ordem inversa para evitar erros de dependência
+
 DROP TABLE IF EXISTS verificacoes;
 DROP TABLE IF EXISTS agendamentos;
 DROP TABLE IF EXISTS consultas;
-DROP TABLE IF EXISTS agenda; -- Apaga a tabela 'agenda' se ela existir
+DROP TABLE IF EXISTS agenda;
 DROP TABLE IF EXISTS medicos;
 DROP TABLE IF EXISTS especialidades;
 DROP TABLE IF EXISTS usuarios;
 DROP TABLE IF EXISTS horarios;
 DROP TABLE IF EXISTS datas;
-
--- Agora, cria tudo novamente na ordem correta
 
 CREATE TABLE usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
