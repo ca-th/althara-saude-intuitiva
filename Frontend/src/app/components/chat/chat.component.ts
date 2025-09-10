@@ -1,5 +1,3 @@
-// No arquivo: src/app/components/chat/chat.component.ts
-
 import { Component, EventEmitter, Output, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -24,12 +22,12 @@ export class ChatComponent implements AfterViewChecked {
   messages: Message[] = [];
   currentUserMessage = '';
   isLoading = false;
-  private shouldScroll = false; // <-- Variável para controlar a rolagem
+  private shouldScroll = false;
 
   constructor(private chatService: ChatService) {}
 
   ngAfterViewChecked() {
-    // Só rola a tela se a gente pedir, para ser mais eficiente
+
     if (this.shouldScroll) {
       this.scrollToBottom();
       this.shouldScroll = false;
@@ -47,15 +45,14 @@ export class ChatComponent implements AfterViewChecked {
     this.chatService.sendMessage(userMessageToSend).subscribe({
       next: (apiResponse: ChatApiResponse) => {
         this.isLoading = false;
-        // --- ESTA É A MUDANÇA PRINCIPAL ---
-        // Pega a resposta longa, divide pelas quebras de linha
+
         const botMessages = apiResponse.response.split('\n').filter(line => line.trim() !== '');
 
-        // Adiciona cada parte como uma mensagem separada, com um pequeno atraso
+
         botMessages.forEach((msg, index) => {
           setTimeout(() => {
             this.addMessage(msg, 'bot');
-          }, 400 * (index + 1)); // Atraso de 400ms entre cada mensagem
+          }, 400 * (index + 1));
         });
       },
       error: (err: any) => {
@@ -66,7 +63,7 @@ export class ChatComponent implements AfterViewChecked {
     });
   }
 
-  // Função auxiliar para adicionar mensagens e pedir a rolagem
+
   private addMessage(text: string, sender: 'user' | 'bot'): void {
     this.messages.push({ text, sender });
     this.shouldScroll = true;

@@ -11,7 +11,7 @@ export class HeroComponent {
   constructor() { }
 
   onComecarClick(): void {
-    console.log('Botão "Começar" CLICADO no HeroComponent (filho). Emitindo evento...');
+    console.log('Botão "Começar" clicado no HeroComponent (filho). Emitindo evento...');
     this.vamosComecar.emit();
   }
 }

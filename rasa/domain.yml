@@ -50,18 +50,16 @@ slots:
     mappings:
     - type: from_entity
       entity: specialty
+  # ## MAPEAMENTO DO NOME CORRIGIDO E SIMPLIFICADO ##
   patient_name:
     type: text
     mappings:
-    - type: from_intent
-      intent: provide_name
-      value: True  # <-- Isso diz ao Rasa para não usar o nome da intenção, mas sim o texto do usuário.
     - type: from_entity
-      entity: patient_name # <-- Se uma entidade for encontrada, ela tem prioridade.
+      entity: patient_name
     - type: from_text
       conditions:
-        - active_loop: appointment_form
-          requested_slot: patient_name
+      - active_loop: appointment_form
+        requested_slot: patient_name
   patient_email:
     type: text
     mappings:
@@ -99,7 +97,7 @@ responses:
   utter_explain_schedule_process:
   - text: É muito simples! Você pode me dizer se tem algum sintoma ou se é uma consulta de rotina. Em seguida, vamos escolher a especialidade, o melhor dia e horário para você. Quer começar agora?
   utter_ask_appointment_confirmation:
-  - text: Com base nos seus sintomas, a especialidade recomendada é **{recommended_specialty}**. Encontrei disponibilidade com **{recommended_doctor_name}**. Deseja agendar a consulta?
+  - text: Com base nos seus sintomas, a especialidade recomendada é {recommended_specialty}. Encontrei disponibilidade com {recommended_doctor_name}. Deseja agendar a consulta?
   utter_ask_symptoms_or_routine:
   - text: Certo. O motivo da consulta é algum sintoma específico ou seria um check-up de rotina?
   utter_ask_symptoms:
@@ -109,7 +107,7 @@ responses:
   utter_ask_patient_name:
   - text: Para prosseguirmos com o agendamento, qual é o nome completo do paciente?
   utter_ask_patient_email:
-  - text: E qual o e-mail para contato?
+  - text: Poderia me informar o e-mail para contato?
   utter_ask_appointment_date:
   - text: 'Para qual data você gostaria de agendar? (ex: dd/mm/yy). Atendemos de segunda a sexta.'
   utter_ask_appointment_time:
@@ -125,14 +123,15 @@ responses:
   - text: Espero ter ajudado! Podemos continuar?
   utter_ask_requested_specialty:
   - text: Para qual especialidade seria a consulta?
+# ## ORDEM DO FORMULÁRIO CORRIGIDA ##
 forms:
   appointment_form:
     required_slots:
-    - requested_specialty
-    - patient_name
-    - patient_email
-    - appointment_date
-    - appointment_time
+      - patient_name
+      - patient_email
+      - requested_specialty
+      - appointment_date
+      - appointment_time
 actions:
 - utter_greet
 - utter_ask_specialty
@@ -158,3 +157,4 @@ actions:
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+

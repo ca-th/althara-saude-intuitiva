@@ -1,6 +1,4 @@
-// No seu arquivo: src/main.ts
-
-import 'zone.js'; // <-- ADICIONE ESTA LINHA DE VOLTA, NO TOPO
+import 'zone.js';
 
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';

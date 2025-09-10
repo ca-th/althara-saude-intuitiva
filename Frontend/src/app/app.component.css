@@ -3,7 +3,7 @@
   background-color: #ffffff;
 }
 
-/* Estiliza o container principal da página (a tag <main>) */
+
 main {
   background-color: #ffffff;
   padding: 80px 20px;
@@ -11,7 +11,7 @@ main {
   z-index: 2;
 }
 
-/* Estiliza o bloco que aparece/desaparece com o *ngIf */
+
 .conteudo-bloco {
   width: 100%;
   display: flex;
@@ -19,12 +19,11 @@ main {
   align-items: center;
   gap: 60px;
 
-  /* --- NOVA TENTATIVA DE CORREÇÃO --- */
-  /* Garante que este container e todos os seus filhos possam receber cliques */
+
   pointer-events: auto;
 }
 
-/* Garante que o componente CTA especificamente possa receber cliques */
+
 app-cta {
   pointer-events: auto;
 }

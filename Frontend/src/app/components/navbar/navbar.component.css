@@ -9,8 +9,8 @@
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Espaça a logo e os links */
-  padding: 0 5%; /* Espaçamento nas laterais */
+  justify-content: space-between;
+  padding: 0 5%;
   box-sizing: border-box;
 }
 
@@ -23,11 +23,11 @@
 }
 
 .menu-nav ul {
-  list-style: none; /* Remove as bolinhas */
+  list-style: none;
   padding: 0;
   margin: 0;
-  display: flex; /* A mágica acontece aqui: alinha os itens lado a lado */
-  gap: 30px; /* Espaço entre os itens do menu */
+  display: flex;
+  gap: 30px;
 }
 
 .menu-nav ul li a {
@@ -42,5 +42,5 @@
 }
 
 .menu-nav ul li a:hover {
-  border-bottom: 2px solid #0d47a1; /* Efeito ao passar o mouse */
+  border-bottom: 2px solid #0d47a1;
 }

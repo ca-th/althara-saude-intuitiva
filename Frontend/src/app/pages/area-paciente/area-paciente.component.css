@@ -1,0 +1,39 @@
+.dashboard-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f0f8ff;
+  min-height: calc(100vh - 120px); /* Altura mínima para preencher a tela */
+}
+
+h1 {
+  color: #333;
+  font-size: 2.2rem;
+  border-bottom: 2px solid #0d47a1;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.dashboard-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.widget {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.widget h3 {
+  margin-top: 0;
+  color: #0d47a1;
+}

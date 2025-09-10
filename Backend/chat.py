@@ -22,6 +22,6 @@ async def chat_with_rasa(chat_message: schemas.ChatMessage):
         if rasa_reply:
             return {"response": rasa_reply[0]["text"]}
         else:
-            return {"response": "Desculpe, não recebi resposta da IA."}
+            return {"response": "Desculpe, não consegui processar a resposta"}
     except requests.exceptions.RequestException as e:
         raise HTTPException(status_code=500, detail=f"Erro ao conectar com Rasa: {str(e)}")

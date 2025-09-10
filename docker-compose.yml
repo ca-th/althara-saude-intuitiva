@@ -1,76 +1,101 @@
-# Conteúdo final e corrigido para o arquivo: docker-compose.yml
-
 services:
-  # Serviço do Frontend (Angular)
   frontend:
     build:
       context: ./Frontend
+    container_name: frontend-1
     ports:
       - "4200:80"
+    networks:
+      - chatbot-net
+    depends_on:
+      - backend
 
-  # Serviço do Backend (FastAPI)
   backend:
     build:
       context: ./Backend
+    container_name: backend-1
     ports:
       - "8000:8000"
     volumes:
       - ./Backend:/app
     environment:
       - DATABASE_URL=mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
+    networks:
+      - chatbot-net
+    # VERSÃO SIMPLIFICADA: Apenas espera que os contentores arranquem
     depends_on:
       - db
+      - rasa
 
-  # Serviço do Servidor Principal do Rasa
   rasa:
     build:
       context: ./rasa
+    container_name: rasa-1
     ports:
       - "5005:5005"
     volumes:
       - ./rasa:/app
-    # --- COMANDO CORRIGIDO AQUI ---
     command: "run --enable-api --cors '*'"
+    networks:
+      - chatbot-net
     depends_on:
       - rasa-actions
+      - duckling
 
-  # Serviço do Action Server do Rasa
   rasa-actions:
     build:
       context: ./rasa
+    container_name: rasa-actions-1
     ports:
-      - "5055:5055"
+      - "5555:5055" # Alterei a porta para evitar conflitos, caso a 5055 esteja em uso
     volumes:
       - ./rasa:/app
-    # --- ADICIONE ESTA SEÇÃO ---
     environment:
       - DB_HOST=db
       - DB_USER=${MYSQL_USER}
       - DB_PASSWORD=${MYSQL_PASSWORD}
       - DB_NAME=${MYSQL_DATABASE}
-    # --------------------------
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
     command: "run actions"
+    networks:
+      - chatbot-net
     depends_on:
       - db
 
-  # Serviço do Duckling
   duckling:
     image: rasa/duckling:latest
+    container_name: duckling-1
     ports:
-      - "8019:8019"
+      - "8019:8000"
+    networks:
+      - chatbot-net
 
-  # Serviço do Banco de Dados (MySQL)
   db:
     image: mysql:8.0
+    container_name: db-1
     restart: always
     ports:
-      - "3307:3306" # Usando a porta 3307 na sua máquina para evitar conflitos
+      - "3307:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
       - ./database-init:/docker-entrypoint-initdb.d
+    networks:
+      - chatbot-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "${MYSQL_USER}", "-p${MYSQL_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   db_data:
+
+networks:
+  chatbot-net:
+    driver: bridge
+

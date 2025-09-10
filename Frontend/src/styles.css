@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 html {
-  scroll-behavior: smooth; /* Efeito de rolagem suave! */
+  scroll-behavior: smooth;
 }
 
 html, body {
@@ -12,21 +12,20 @@ html, body {
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #ffffff; /* Fundo ainda mais claro */
-  color: #212529; /* Texto quase preto para alto contraste */
+  background-color: #ffffff;
+  color: #212529;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- /* overflow-y: hidden; /* ADICIONADO: Impede a barra de rolagem vertical de aparecer */
+
 }
 
-/* Base de fonte maior para acessibilidade */
 :root {
-  font-size: 16px; /* No mobile, isso pode ser ajustado */
+  font-size: 16px;
 }
 
 @media (min-width: 768px) {
   :root {
-    font-size: 18px; /* Fonte um pouco maior em telas maiores */
+    font-size: 18px;
   }
 }

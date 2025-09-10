@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './contato.component.html',
   styleUrls: ['./contato.component.css']
 })
-export class ContatoComponent { // <<< O NOME AQUI PRECISA SER EXATO
+export class ContatoComponent {
 
 }

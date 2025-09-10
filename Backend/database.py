@@ -1,14 +1,14 @@
-# Conteúdo final e corrigido para o arquivo: Backend/database.py
-
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import os # <-- 1. Importamos a biblioteca 'os'
+import os
 
-# 2. A URL agora é lida da variável de ambiente que o Docker Compose fornece
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL,
+    connect_args={"charset": "utf8mb4"}
+)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

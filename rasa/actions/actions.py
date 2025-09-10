@@ -1,5 +1,3 @@
-# Conteúdo completo e corrigido para o arquivo: Backend/actions/actions.py
-
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -11,12 +9,12 @@ import re
 import logging
 import dateparser
 
-# Nossos dois módulos customizados
+
 from .gemini_integration import GeminiIntegration
 from .db_connector import create_connection
 
-# Constante com o nome da clínica para fácil manutenção
-CLINICA_NOME = "Althara Saúde" 
+
+CLINICA_NOME = "Althara Saúde"
 
 logger = logging.getLogger(__name__)
 gemini_service = GeminiIntegration()
@@ -51,9 +49,6 @@ class ActionAnalyzeSymptoms(Action):
             
             if not available_specialties:
                 raise ValueError("Nenhuma especialidade encontrada no banco de dados.")
-
-            #dispatcher.utter_message(response="utter_list_specialties_for_analysis", specialties_list=specialties_list_str)
-            #dispatcher.utter_message(response="utter_analyzing_symptoms")
 
             analysis = gemini_service.analyze_symptoms([symptom_text], available_specialties)
 
@@ -131,9 +126,38 @@ class ActionScheduleAppointment(Action):
                 return []
             id_medico = medico['id_medico']
             nome_medico = medico['nome']
+            
+            # --- CORREÇÃO FINAL E DEFINITIVA ---
+            time_str_for_slot = None
+            
+            # Tenta primeiro o formato simples "XXh"
+            match = re.match(r"^\s*(\d{1,2})\s*h\s*$", hora_str.strip(), re.IGNORECASE)
+            if match:
+                hour = int(match.group(1))
+                if 0 <= hour <= 23:
+                    time_str_for_slot = f"{hour:02d}:00"
+            
+            # Se não for o formato simples, usa o dateparser
+            if not time_str_for_slot:
+                time_obj = dateparser.parse(hora_str, languages=['pt'])
+                if time_obj:
+                    # Arredonda para o horário de meia em meia hora mais próximo
+                    minute = 30 if time_obj.minute >= 30 else 0
+                    time_str_for_slot = time_obj.strftime(f"%H:{minute:02d}")
+
+            if not time_str_for_slot:
+                dispatcher.utter_message(text=f"Desculpe, não consegui entender o horário '{hora_str}' para salvar.")
+                return[]
 
             date_obj = dateparser.parse(data_str, languages=['pt'])
+            if not date_obj:
+                dispatcher.utter_message(text=f"Desculpe, não consegui entender a data '{data_str}' para salvar.")
+                return[]
+
             data_db_format = date_obj.strftime("%Y-%m-%d")
+            hora_db_format = f"{time_str_for_slot}:00"
+            # --- FIM DA CORREÇÃO ---
+
             cursor.execute("SELECT id_data FROM datas WHERE data = %s", (data_db_format,))
             data = cursor.fetchone()
             if not data:
@@ -141,11 +165,11 @@ class ActionScheduleAppointment(Action):
                 return []
             id_data = data['id_data']
 
-            hora_db_format = f"{hora_str}:00"
+            
             cursor.execute("SELECT id_horario FROM horarios WHERE hora = %s", (hora_db_format,))
             horario = cursor.fetchone()
             if not horario:
-                dispatcher.utter_message(text=f"Desculpe, ocorreu um erro: o horário '{hora_str}' não foi encontrado no sistema.")
+                dispatcher.utter_message(text=f"Desculpe, ocorreu um erro: o horário '{hora_str}' (formatado como {hora_db_format}) não foi encontrado no sistema.")
                 return []
             id_horario = horario['id_horario']
 
@@ -256,13 +280,17 @@ class ValidateAppointmentForm(FormValidationAction):
                 dispatcher.utter_message(text="Esta data já passou. Por favor, escolha uma data a partir de hoje.")
                 return {"appointment_date": None}
 
-            if date_obj.weekday() >= 5: # 5 é Sábado, 6 é Domingo
+            if date_obj.weekday() >= 5:  # 5 é Sábado, 6 é Domingo
                 dispatcher.utter_message(text="Desculpe, não funcionamos nos finais de semana. Por favor, escolha um dia de segunda a sexta.")
                 return {"appointment_date": None}
-            
+
             date_str_for_db = date_obj.strftime("%Y-%m-%d")
             date_str_for_user = date_obj.strftime("%d/%m/%Y")
             
+            specialty = tracker.get_slot("requested_specialty")
+            if not specialty:
+                return {"appointment_date": date_str_for_user}
+
             conn = create_connection()
             if not conn:
                 dispatcher.utter_message(text="Não consigo verificar as datas no momento. Tente novamente em alguns instantes.")
@@ -270,13 +298,20 @@ class ValidateAppointmentForm(FormValidationAction):
 
             try:
                 cursor = conn.cursor(dictionary=True)
-                cursor.execute("SELECT id_data FROM datas WHERE data = %s", (date_str_for_db,))
-                data_exists = cursor.fetchone()
+                query = """
+                    SELECT COUNT(a.id_agenda) as count FROM agenda a
+                    JOIN medicos m ON a.id_medico = m.id_medico
+                    JOIN especialidades e ON m.id_especialidade = e.id_especialidade
+                    JOIN datas d ON a.id_data = d.id_data
+                    WHERE d.data = %s AND e.nome = %s AND a.disponivel = TRUE
+                """
+                cursor.execute(query, (date_str_for_db, specialty))
+                result = cursor.fetchone()
 
-                if data_exists:
+                if result and result['count'] > 0:
                     return {"appointment_date": date_str_for_user}
                 else:
-                    dispatcher.utter_message(text=f"A data {date_str_for_user} não está disponível em nossa agenda. Por favor, escolha outra data.")
+                    dispatcher.utter_message(text=f"Puxa, parece que não tenho horários disponíveis para {specialty} no dia {date_str_for_user}. Gostaria de tentar outra data?")
                     return {"appointment_date": None}
             finally:
                 if conn.is_connected():
@@ -295,16 +330,33 @@ class ValidateAppointmentForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         try:
-            time_obj = dateparser.parse(slot_value, languages=['pt'])
-            if not time_obj:
-                dispatcher.utter_message(text="Não consegui entender esse horário. Tente novamente (ex: '14:30').")
-                return {"appointment_time": None}
+            time_str_for_slot = None
             
-            time_str = time_obj.strftime("%H:%M")
+            # Primeiro, tenta um formato simples e muito comum como "9h", "14h", etc.
+            match = re.match(r"^\s*(\d{1,2})\s*h\s*$", slot_value.strip(), re.IGNORECASE)
+            if match:
+                hour = int(match.group(1))
+                if 0 <= hour <= 23:
+                    time_str_for_slot = f"{hour:02d}:00"
+            
+            # Se não for o formato simples, usa o dateparser para formatos mais complexos
+            if not time_str_for_slot:
+                time_obj = dateparser.parse(slot_value, languages=['pt'])
+                if time_obj:
+                    # Arredonda os minutos para 00 ou 30 para alinhar com a agenda
+                    minute = 30 if time_obj.minute >= 30 else 0
+                    time_str_for_slot = time_obj.strftime(f"%H:{minute:02d}")
+
+            if not time_str_for_slot:
+                dispatcher.utter_message(text="Não consegui entender esse horário. Tente novamente (ex: '09:00' ou '14h').")
+                return {"appointment_time": None}
+                
+            time_db_format = f"{time_str_for_slot}:00"
+
             date_str = tracker.get_slot("appointment_date")
             specialty = tracker.get_slot("requested_specialty")
 
-            dispatcher.utter_message(response="utter_checking_availability", time=time_str)
+            dispatcher.utter_message(response="utter_checking_availability", time=time_str_for_slot)
 
             conn = create_connection()
             if not conn:
@@ -315,7 +367,6 @@ class ValidateAppointmentForm(FormValidationAction):
             try:
                 cursor = conn.cursor(dictionary=True)
                 date_db = datetime.strptime(date_str, "%d/%m/%Y").strftime("%Y-%m-%d")
-                time_db = f"{time_str}:00"
                 
                 query = """
                     SELECT a.disponivel FROM agenda a
@@ -325,27 +376,29 @@ class ValidateAppointmentForm(FormValidationAction):
                     JOIN horarios h ON a.id_horario = h.id_horario
                     WHERE e.nome = %s AND d.data = %s AND h.hora = %s
                 """
-                cursor.execute(query, (specialty, date_db, time_db))
+                cursor.execute(query, (specialty, date_db, time_db_format)) # Usa o formato de DB
                 result = cursor.fetchone()
 
                 if result and result['disponivel']:
                     is_available = True
 
                 if is_available:
-                    return {"appointment_time": time_str}
+                    return {"appointment_time": time_str_for_slot} 
                 else:
                     query_disponiveis = """
                         SELECT TIME_FORMAT(h.hora, '%H:%i') AS hora_formatada FROM agenda ag
                         JOIN horarios h ON ag.id_horario = h.id_horario
                         JOIN datas d ON ag.id_data = d.id_data
-                        WHERE d.data = %s AND ag.disponivel = TRUE
+                        JOIN medicos m ON ag.id_medico = m.id_medico
+                        JOIN especialidades e ON m.id_especialidade = e.id_especialidade
+                        WHERE d.data = %s AND ag.disponivel = TRUE AND e.nome = %s
                         ORDER BY h.hora
                     """
-                    cursor.execute(query_disponiveis, (date_db,))
+                    cursor.execute(query_disponiveis, (date_db, specialty))
                     horarios_disponiveis = [row['hora_formatada'] for row in cursor.fetchall()]
 
                     if horarios_disponiveis:
-                        msg = f"O horário das {time_str} não está disponível. 😕\nMas para o dia {date_str}, tenho estes horários livres:\n**{', '.join(horarios_disponiveis)}**\n\nQual deles você prefere?"
+                        msg = f"O horário das {time_str_for_slot} não está disponível. 😕\nMas para o dia {date_str}, tenho estes horários livres:\n**{', '.join(horarios_disponiveis)}**\n\nQual deles você prefere?"
                         dispatcher.utter_message(text=msg)
                     else:
                         dispatcher.utter_message(text=f"Puxa, não temos mais horários para {specialty} no dia {date_str}. Você gostaria de tentar outra data?")
@@ -394,3 +447,4 @@ class ActionProvidePrepTips(Action):
         return "action_provide_prep_tips"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         return []
+

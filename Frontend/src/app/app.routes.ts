@@ -2,23 +2,29 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ContatoComponent } from './contato/contato.component';
 import { AboutComponent } from './components/about/about.component';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AreaPacienteComponent } from './pages/area-paciente/area-paciente.component';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
+
+  { path: '', component: HomeComponent },
+  { path: 'sobre-nos', component: AboutComponent },
+  { path: 'contato', component: ContatoComponent },
+
+  //  autenticação
+  { path: 'cadastro', component: CadastroComponent },
+  { path: 'login', component: LoginComponent },
+
+
   {
-    path: 'contato',
-    loadComponent: () => import('./contato/contato.component').then(m => m.ContatoComponent)
+    path: 'area-paciente',
+    component: AreaPacienteComponent,
+    canActivate: [authGuard]
   },
-  {
-    path: '',
-    component: HomeComponent
-  },
-  {
-     path: 'sobre-nos',        // A URL que o usuário vai ver no navegador
-    component: AboutComponent // O componente que será exibido nessa URL
-  },
-  {
-    path: '**',
-    redirectTo: '',
-    pathMatch: 'full'
-  }
+
+
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
+

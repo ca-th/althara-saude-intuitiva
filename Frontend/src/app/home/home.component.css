@@ -1,17 +1,13 @@
-/* No seu home.component.css */
-
 :host {
   display: block;
 
-  /* A cor de fundo agora fica no componente <app-home> inteiro */
+
   background-color: #f0f8ff;
 
-  /* Garante que o componente ocupe pelo menos a altura da tela,
-     impedindo o fundo branco do body de aparecer embaixo. */
   min-height: 100vh;
 }
 
 main {
-  /* O main não precisa mais de cor, apenas de espaçamento (padding) */
+
   padding: 4rem 1rem;
 }

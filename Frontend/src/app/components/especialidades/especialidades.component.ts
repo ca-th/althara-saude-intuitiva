@@ -1,7 +1,5 @@
-// No arquivo: src/app/components/especialidades/especialidades.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// Importamos Medico também
 import { ApiService, Especialidade, Medico } from '../../services/api.service';
 
 @Component({
@@ -15,7 +13,7 @@ export class EspecialidadesComponent implements OnInit {
 
   especialidades: Especialidade[] = [];
 
-  // Novas propriedades para controlar o que é exibido
+
   especialidadeSelecionadaId: number | null = null;
   medicosDaEspecialidade: Medico[] = [];
   isLoadingMedicos = false;
@@ -28,9 +26,9 @@ export class EspecialidadesComponent implements OnInit {
     });
   }
 
-  // Nova função que será chamada pelo clique
+
   onEspecialidadeClick(especialidade: Especialidade): void {
-    // Se o usuário clicar no mesmo card que já está aberto, feche-o
+
     if (this.especialidadeSelecionadaId === especialidade.id_especialidade) {
       this.especialidadeSelecionadaId = null;
       this.medicosDaEspecialidade = [];
@@ -39,7 +37,7 @@ export class EspecialidadesComponent implements OnInit {
 
     this.isLoadingMedicos = true;
     this.especialidadeSelecionadaId = especialidade.id_especialidade;
-    this.medicosDaEspecialidade = []; // Limpa a lista anterior
+    this.medicosDaEspecialidade = [];
 
     this.apiService.getMedicosPorEspecialidade(especialidade.id_especialidade)
       .subscribe(medicos => {

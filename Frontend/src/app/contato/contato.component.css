@@ -1,6 +1,6 @@
 .contact-container {
   width: 100%;
-  padding: 4rem 1rem; /* Aumenta o espaçamento interno */
+  padding: 4rem 1rem;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -14,21 +14,21 @@
 }
 
 .subtitle {
-  margin-bottom: 3rem; /* Aumenta o espaço abaixo do subtítulo */
+  margin-bottom: 3rem;
   color: #666;
 }
 
 .contact-info {
   display: flex;
-  justify-content: space-around; /* Distribui os itens igualmente */
-  align-items: flex-start; /* Alinha os itens pelo topo */
-  flex-wrap: wrap; /* PERMITE QUE OS ITENS QUEBREM A LINHA em telas menores */
-  gap: 2rem; /* Adiciona um espaço entre os itens */
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
 .info-item {
-  flex: 1; /* Permite que os itens cresçam e ocupem o espaço */
-  min-width: 250px; /* Define uma largura mínima antes de quebrar a linha */
+  flex: 1;
+  min-width: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,9 +36,9 @@
 }
 
 .icon {
-  font-size: 2.5rem; /* Aumenta o tamanho do ícone */
+  font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #007bff; /* Cor azul para os ícones */
+  color: #007bff;
 }
 
 h2 {
@@ -58,28 +58,27 @@ p {
   line-height: 1.6;
 }
 
-/* --- ESTILOS PARA DISPOSITIVOS MÓVEIS --- */
-/* As regras abaixo serão aplicadas apenas em telas com largura máxima de 768px */
+
 @media (max-width: 768px) {
   .contact-container {
-    padding: 2rem 1rem; /* Diminui o espaçamento em telas menores */
+    padding: 2rem 1rem;
   }
 
   h2 {
-    font-size: 2rem; /* Diminui o tamanho do título principal */
+    font-size: 2rem;
   }
 
   h3 {
-    font-size: 1.25rem; /* Diminui o tamanho dos subtítulos (Endereço, etc.) */
+    font-size: 1.25rem;
   }
 
   .icon {
-    font-size: 2rem; /* Diminui um pouco o ícone */
+    font-size: 2rem;
   }
 
   .contact-info {
-    flex-direction: column; /* Força os itens a ficarem um abaixo do outro */
-    align-items: center; /* Centraliza os itens na coluna */
-    gap: 2.5rem; /* Ajusta o espaço vertical entre eles */
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
   }
 }

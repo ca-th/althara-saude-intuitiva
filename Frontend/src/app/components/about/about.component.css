@@ -1,4 +1,3 @@
-/* Container externo da seção "Sobre Nós" */
 .about-container {
   display: flex;
   justify-content: center;
@@ -8,7 +7,6 @@
   box-sizing: border-box;
 }
 
-/* Caixa de conteúdo central */
 .content-wrapper {
   max-width: 900px;
   width: 100%;
@@ -20,7 +18,7 @@
   box-sizing: border-box;
 }
 
-/* Título da seção */
+
 .content-wrapper h2 {
   color: #0d47a1;
   font-size: 2.5rem;
@@ -28,7 +26,7 @@
   margin-bottom: 20px;
 }
 
-/* Parágrafo da seção */
+
 .content-wrapper p {
   font-size: 1.1rem;
   line-height: 1.7;

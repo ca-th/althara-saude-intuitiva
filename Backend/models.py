@@ -1,4 +1,3 @@
-# No arquivo: Backend/models.py
 from sqlalchemy import Column, Integer, String, ForeignKey
 from database import Base
 

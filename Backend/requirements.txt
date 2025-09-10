@@ -7,4 +7,6 @@ pymysql
 cryptography
 passlib
 bcrypt
+python-jose[cryptography]
+python-multipart
 requests

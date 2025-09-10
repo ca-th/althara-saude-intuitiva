@@ -79,9 +79,6 @@ CREATE TABLE consultas (
     FOREIGN KEY (id_medico) REFERENCES medicos(id_medico)
 );
 
-SET FOREIGN_KEY_CHECKS=0;
-TRUNCATE TABLE especialidades;
--- Inserindo os dados de exemplo
 INSERT INTO especialidades (nome) VALUES
 ('Clínica Geral'), 
 ('Cardiologia'), 
@@ -130,12 +127,12 @@ INSERT INTO horarios (hora) VALUES
 ('18:00:00'), ('18:30:00'),
 ('19:00:00');
 
--- Adicionando algumas datas de exemplo para Agosto de 2025
+
 INSERT INTO datas (data) VALUES
 ('2025-08-01'), ('2025-08-04'), ('2025-08-05'), ('2025-08-06'),
 ('2025-08-07'), ('2025-08-08');
 
--- Populando a agenda (exemplo simples: todos os médicos em todas as datas e horários)
+
 INSERT INTO agenda (id_medico, id_data, id_horario)
 SELECT m.id_medico, d.id_data, h.id_horario
 FROM medicos m, datas d, horarios h;

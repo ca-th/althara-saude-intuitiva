@@ -1,22 +1,16 @@
-# ---------- Dependências (Gerenciadas por instaladores) ----------
-# Python
 venv/
 .venv/
 rasa_venv/
 **/venv*/
 **/.venv*/
 
-# Node.js
 node_modules/
-
 
 .env
 **/.env
 .env.*
 *.env
 
-# ---------- Arquivos Gerados (Builds e Caches) ----------
-# Python / Rasa
 __pycache__/
 **/__pycache__/
 *.py[cod]
@@ -27,11 +21,10 @@ __pycache__/
 rasa/models/*.tar.gz
 results/
 
-# Angular
+# angular
 build/
 dist/
 
-# ---------- Logs ----------
 logs
 *.log
 npm-debug.log*
@@ -42,6 +35,5 @@ yarn-error.log*
 .idea/
 .vscode/
 
-# ---------- Arquivos de Sistema Operacional ----------
 .DS_Store
 Thumbs.db

@@ -1,6 +1,6 @@
 .especialidades-wrapper {
   padding: 4rem 1rem;
-  background-color: #ffffff; /* Fundo branco para contrastar */
+  background-color: #ffffff;
 }
 
 .container {
@@ -23,9 +23,9 @@ p {
 
 .grid {
   display: grid;
-  /* Cria 3 colunas em telas grandes, 2 em médias e 1 em pequenas */
+
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem; /* Espaçamento entre os cards */
+  gap: 1.5rem;
 }
 
 .card {
